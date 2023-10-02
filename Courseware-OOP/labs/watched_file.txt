@@ -1,0 +1,46 @@
+"""
+Text file watched by observers created by filewatch.py
+"""
+# A line of text
+.txt'
+step = 0
+with open(path, 'r') as file:
+    first_position = file.tell()
+    content
+
+step =with open(path, 'r') as file:
+    first_position = file.tell()
+    content = file.read()
+    filesize0 = len(content)
+    print(filesize0)
+
+    #jdjdjd
+
+
+path = 'watched_file.txt'
+step = 0
+with open(path, 'r') as file:
+    first_position = file.tell()
+    content = file.read()
+    filesize0 = len(content)
+    print(filesize0)
+    print('')
+    file_size_bytes = os.stat(path).st_size
+   # byte_length_file = bytes(content, 'utf-8')
+    print(f'file of size {filesize0} characters contains {file_size_bytes} bytes')
+    #jdjdjd
+szszszszs
+
+path = 'watched_fil
+iiii
+import os
+
+
+
+
+
+
+
+
+
+

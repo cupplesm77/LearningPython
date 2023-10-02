@@ -1,0 +1,7 @@
+At this time, there are - amazingly - NO differences between
+Python 2.7 and Python 3.x in the topics covered in the course.
+
+Future updates may introduce differences, which will be noted here.
+
+(If you notice any difference that should be pointed out, please
+notify me at https://powerfulpython.com/contact/ .)
