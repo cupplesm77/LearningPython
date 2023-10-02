@@ -12,8 +12,8 @@ def split_amount(amount, n):
     return portions
 
 
-split = split_amount(5, 3)
-print(split)
+# split = split_amount(5, 3)
+# print(split)
 
 split = split_amount(5, 4)
 print(split)
