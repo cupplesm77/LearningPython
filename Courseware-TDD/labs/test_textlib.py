@@ -55,5 +55,13 @@ class TestParagraph(unittest.TestCase):
     def test_empty_paragraph(self):
         self.assertEqual(0, para.num_sentences())
 
+    def test_single_sentences(self):
+        """test for single sentence in paragraph"""
+        pass
+
+    def several_sentences(self):
+        """test for at least three sentences in paragraph"""
+        pass
+
 
 # Part of Powerful Python Academy. Copyright MigrateUp LLC. All rights reserved.
