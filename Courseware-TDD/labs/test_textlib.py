@@ -6,6 +6,7 @@ expected0 = [""]
 
 string1 = """This is a one paragraph string"""
 expected1 = ["This is a one paragraph string"]
+
 string12 = """This is a one paragraph string
 """
 
@@ -28,8 +29,10 @@ expected31 = ["This is a paragraph 1.", "Paragraph 2.", "And, paragraph 3!"]
 
 class TestBodyOfText(unittest.TestCase):
     def test_empty_story(self):
-        self.assertEqual(0, BodyOfText(string0).num_paragraphs())
-        self.assertEqual(expected0, BodyOfText(string0).paragraphs())
+        with self.assertRaises(ValueError):
+            BodyOfText(string0).num_paragraphs()
+        # self.assertEqual(0, BodyOfText(string0).num_paragraphs())
+        # self.assertEqual(expected0, BodyOfText(string0).paragraphs())
 
     def test_single_paragraph1(self):
         self.assertEqual(1, BodyOfText(string1).num_paragraphs())

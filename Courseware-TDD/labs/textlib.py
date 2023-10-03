@@ -1,3 +1,6 @@
+# textlib.py
+
+
 class BodyOfText:
     split_str = "\n\n"
 
@@ -6,7 +9,9 @@ class BodyOfText:
 
     def num_paragraphs(self):
         if self.text == "":
-            num_paragraphs = 0
+            print(f"\ntext == {self.text}")
+            print("assert ValueError: ")
+            assert ValueError("text can not be empty string")
         else:
             count = self.text.count(self.split_str)
             num_paragraphs = count + 1
