@@ -1,6 +1,14 @@
 # textlib.py
 
 
+class Paragraph:
+    def __init__(self, text):
+        pass
+
+    def num_sentences(self):
+        return -1
+
+
 class BodyOfText:
     split_str = "\n\n"
 
@@ -14,8 +22,8 @@ class BodyOfText:
             assert ValueError("text can not be empty string")
         else:
             count = self.text.count(self.split_str)
-            num_paragraphs = count + 1
-        return num_paragraphs
+            number_paragraphs = count + 1
+        return number_paragraphs
 
     def paragraphs(self):
         par_list = self.text.split(self.split_str)

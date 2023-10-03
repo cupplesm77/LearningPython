@@ -1,5 +1,8 @@
+# test_textlib.py
+
+
 import unittest
-from textlib import BodyOfText
+from textlib import BodyOfText, Paragraph
 
 string0 = ""
 expected0 = [""]
@@ -26,6 +29,8 @@ And, paragraph 3!"""
 
 expected31 = ["This is a paragraph 1.", "Paragraph 2.", "And, paragraph 3!"]
 
+para = Paragraph(string0)
+
 
 class TestBodyOfText(unittest.TestCase):
     def test_empty_story(self):
@@ -44,6 +49,11 @@ class TestBodyOfText(unittest.TestCase):
     def test_several_paragraphs(self):
         self.assertEqual(3, BodyOfText(string3).num_paragraphs())
         self.assertEqual(expected31, BodyOfText(string31).paragraphs())
+
+
+class TestParagraph(unittest.TestCase):
+    def test_empty_paragraph(self):
+        self.assertEqual(0, para.num_sentences())
 
 
 # Part of Powerful Python Academy. Copyright MigrateUp LLC. All rights reserved.
