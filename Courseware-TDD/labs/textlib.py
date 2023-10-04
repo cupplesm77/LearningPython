@@ -9,9 +9,10 @@ string2 = """Mr. Smith bought cheap_site.com for 1.5 million dollars,
 i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true...
  Well, with a probability of .98, it isn't!
 """
+tricky_str2 = "I bought a basket of fruit for Mrs. Smith's birthday."
 
 # testing my understanding of the pattern (regex)
-# split_string = re.split(pattern, anomaly3)
+# split_string = re.split(pattern, tricky_str2)
 # print(f"length of string = {split_string}")
 # print(len(split_string))
 # if "" in split_string:

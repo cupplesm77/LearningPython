@@ -46,7 +46,7 @@ i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any 
 cplx_str1 = """
     My favorite website is docs.python.org, with reddit.com coming in a close second.
 """
-cplx_str2 = "I bought a basket of fruit for Mrs. Smith's birthday."
+tricky_str = "I bought a basket of fruit for Mrs. Smith's birthday."
 cplx_str3 = "I will arrive between 6 a.m. and 7 a.m."
 cplx_str4 = "Your total is $10.43."
 
@@ -54,6 +54,10 @@ para0 = Paragraph(string0)
 para1 = Paragraph(string1)
 para5 = Paragraph(string3)
 para_complex = Paragraph(complex_string)
+c_str1 = Paragraph(cplx_str1)
+tricky = Paragraph(tricky_str)
+c_str3 = Paragraph(cplx_str3)
+c_str4 = Paragraph(cplx_str4)
 
 
 class TestBodyOfText(unittest.TestCase):
@@ -90,6 +94,10 @@ class TestParagraph(unittest.TestCase):
     def test_complex_sentences(self):
         """test for a complex set of sentences in paragraph"""
         self.assertEqual(5, para_complex.num_sentences())
+        self.assertEqual(1, c_str1.num_sentences())
+        self.assertEqual(1, tricky.num_sentences())
+        self.assertEqual(1, c_str3.num_sentences())
+        self.assertEqual(1, c_str4.num_sentences())
 
 
 # Part of Powerful Python Academy. Copyright MigrateUp LLC. All rights reserved.
