@@ -1,5 +1,6 @@
 # imports
 import numpy as np
+import re
 
 np.random.seed(444)
 
@@ -240,3 +241,63 @@ print(cplx_str1)
 
 mystring = "my string."
 print(mystring)
+
+# another example
+
+# pattern for finding sentences
+pattern = r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s"
+
+
+class Paragraph:
+    # split_str_sentences = pattern
+    null_string = ""
+    _words_with_period = {"a.m.", "p.m.", "Mr.", "Mrs.", "Ms."}
+
+    def __init__(self, text):
+        self.text = text
+
+    def num_sentences(self):
+        t_str = self.text
+        for wrd in self._words_with_period:
+            all_words = re.findall(wrd, t_str)
+            if all_words:
+                print(all_words)
+                t_str = t_str.replace(wrd, "#####")
+                # all_words = []
+        print(t_str)
+        split_string = re.split(pattern, t_str)
+        if self.null_string not in split_string:
+            pass
+        else:
+            split_string.pop(split_string.index(""))
+        count = len(split_string)
+        return count
+
+
+string2 = """Mr. Smith bought cheap_site.com for 1.5 million dollars, 
+i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true...
+ Well, with a probability of .98, it isn't!
+"""
+
+cplx_str = """Did you tell Mr. Burke yesterday before 9 p.m.? Mrs. Burke and Ms. Edwards are bringing the
+birthday cake tomorrow at approximately 10 a.m."""
+
+wrd = "Mr."
+find_str = re.findall(wrd, cplx_str)
+print(find_str)
+t_str = cplx_str.replace(wrd, "#####")
+print(t_str)
+
+print(cplx_str)
+
+par_count = Paragraph(cplx_str).num_sentences()
+print(par_count)
+
+# t_str = cplx_str
+# for word in _words_with_period:
+#     all_words = re.findall(word, t_str)
+#     if all_words:
+#         print(all_words)
+#         t_str = t_str.replace(word, "###")
+#         all_words = []
+# print(t_str)
