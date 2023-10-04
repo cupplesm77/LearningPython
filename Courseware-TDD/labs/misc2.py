@@ -232,3 +232,11 @@ except TypeError as error:
 
 f = lambda x: x * x + 1.1
 print(f(1))
+
+cplx_str1 = """ My favorite website is docs.python.org, with reddit.com coming in a close second."
+    """
+print(type(cplx_str1))
+print(cplx_str1)
+
+mystring = "my string."
+print(mystring)

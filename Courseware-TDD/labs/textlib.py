@@ -2,14 +2,16 @@
 
 import re
 
+# pattern for finding sentences
 pattern = r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s"
 
-string2 = """Mr. Smith bought cheapsite.com for 1.5 million dollars, 
+string2 = """Mr. Smith bought cheap_site.com for 1.5 million dollars, 
 i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true...
  Well, with a probability of .98, it isn't!
 """
+
 # testing my understanding of the pattern (regex)
-# split_string = re.split(pattern, string2)
+# split_string = re.split(pattern, anomaly3)
 # print(f"length of string = {split_string}")
 # print(len(split_string))
 # if "" in split_string:

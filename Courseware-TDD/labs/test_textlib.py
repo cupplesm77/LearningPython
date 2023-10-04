@@ -4,6 +4,12 @@
 import unittest
 from textlib import BodyOfText, Paragraph
 
+# set of anomaly strings:
+anomaly1 = "     "
+anomaly2 = """     
+                    
+     """
+
 string0 = ""  # 0 sentences
 expected0 = [""]
 
@@ -31,10 +37,18 @@ And, paragraph 3!"""
 expected31 = ["This is a paragraph 1.", "Paragraph 2.", "And, paragraph 3!"]
 
 # complex_string has 5 sentences
-complex_string = """Mr. Smith bought cheapsite.com for 1.5 million dollars, 
+complex_string = """Mr. Smith bought cheap_site.com for 1.5 million dollars, 
 i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true...
  Well, with a probability of .98, it isn't!
 """
+
+# some other rather complex sentences
+cplx_str1 = """
+    My favorite website is docs.python.org, with reddit.com coming in a close second.
+"""
+cplx_str2 = "I bought a basket of fruit for Mrs. Smith's birthday."
+cplx_str3 = "I will arrive between 6 a.m. and 7 a.m."
+cplx_str4 = "Your total is $10.43."
 
 para0 = Paragraph(string0)
 para1 = Paragraph(string1)
