@@ -4,15 +4,16 @@
 import unittest
 from textlib import BodyOfText, Paragraph
 
-string0 = ""
+string0 = ""  # 0 sentences
 expected0 = [""]
 
-string1 = """This is a one paragraph string."""
+string1 = """This is a one paragraph string."""  # 1 sentence
 expected1 = ["This is a one paragraph string."]
 
 string12 = """This is a one paragraph string.
 """
 
+# string3 has 6 sentences
 string3 = """This is a rather short story. It has three paragraphs.
 
 Once upon a time, a brave princess went on a dangerous journey. She
@@ -29,7 +30,7 @@ And, paragraph 3!"""
 
 expected31 = ["This is a paragraph 1.", "Paragraph 2.", "And, paragraph 3!"]
 
-
+# complex_string has 5 sentences
 complex_string = """Mr. Smith bought cheapsite.com for 1.5 million dollars, 
 i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true...
  Well, with a probability of .98, it isn't!
@@ -70,7 +71,7 @@ class TestParagraph(unittest.TestCase):
 
     def test_several_sentences(self):
         """test for at least three sentences in paragraph"""
-        self.assertEqual(5, para5.num_sentences())
+        self.assertEqual(6, para5.num_sentences())
 
     def test_complex_sentences(self):
         """test for a complex set of sentences in paragraph"""

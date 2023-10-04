@@ -45,7 +45,7 @@ class BodyOfText:
         if self.text == "":
             print(f"\ntext == {self.text}")
             print("assert ValueError: ")
-            assert ValueError("text can not be empty string1")
+            assert ValueError("text can not be empty")
         else:
             count = self.text.count(self.split_str_paragraphs)
             number_paragraphs = count + 1
