@@ -7,7 +7,7 @@ pattern = r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s"
 
 
 class Paragraph:
-    null_string = ""
+    _null_string = ""
     _words_with_period = {"a.m.", "p.m.", "Mr.", "Mrs.", "Ms."}
 
     def __init__(self, text):
@@ -23,7 +23,7 @@ class Paragraph:
                 # all_words = []
         print(t_str)
         split_string = re.split(pattern, t_str)
-        if self.null_string not in split_string:
+        if self._null_string not in split_string:
             pass
         else:
             split_string.pop(split_string.index(""))
