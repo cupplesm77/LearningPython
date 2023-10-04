@@ -1,16 +1,42 @@
 # textlib.py
 
+import re
+
+pattern = r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s"
+
+string2 = """Mr. Smith bought cheapsite.com for 1.5 million dollars, 
+i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true...
+ Well, with a probability of .98, it isn't!
+"""
+# testing my understanding of the pattern (regex)
+# split_string = re.split(pattern, string2)
+# print(f"length of string = {split_string}")
+# print(len(split_string))
+# if "" in split_string:
+#     idx = split_string.index("")
+#     print(f"idx = {idx}")
+#     split_string.pop(idx)
+# print(split_string)
+# print(f"length of clean string = {len(split_string)}")
+
 
 class Paragraph:
+    split_str_sentences = pattern
+    null_string = ""
+
     def __init__(self, text):
-        pass
+        self.text = text
 
     def num_sentences(self):
-        return -1
+        split_string = re.split(pattern, self.text)
+        if self.null_string in split_string:
+            split_string.pop(split_string.index(""))
+        count = len(split_string)
+        return count
 
 
 class BodyOfText:
-    split_str = "\n\n"
+    split_str_paragraphs = "\n\n"
 
     def __init__(self, text):
         self.text = text
@@ -19,14 +45,14 @@ class BodyOfText:
         if self.text == "":
             print(f"\ntext == {self.text}")
             print("assert ValueError: ")
-            assert ValueError("text can not be empty string")
+            assert ValueError("text can not be empty string1")
         else:
-            count = self.text.count(self.split_str)
+            count = self.text.count(self.split_str_paragraphs)
             number_paragraphs = count + 1
         return number_paragraphs
 
     def paragraphs(self):
-        par_list = self.text.split(self.split_str)
+        par_list = self.text.split(self.split_str_paragraphs)
         return par_list
 
 
