@@ -50,3 +50,9 @@ if text2_search:
     raise ValueError("Text must not be only whitespace")
 else:
     print("Terrific! Text is not ONLY whitespace")
+
+text = "   foo    \t    \t bar  "
+print(text)
+pattern = "\s+"
+remove_white = re.sub(pattern, " ", text).strip()
+print(remove_white)
