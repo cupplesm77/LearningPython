@@ -13,9 +13,13 @@ class TestWhitespace(unittest.TestCase):
             "    foo bar",
             "foo\tbar",
             "foo      bar",
-            "foo    \t    \t",
+            "foo    \t    \t bar",
             " \tfoo bar",
         ]
         for text in texts:
-            with self.subTest(text=text):
-                self.assertEqual(1, Whitespace(text).whitespace_subtest())
+            if text == "":
+                with self.assertRaises(ValueError):
+                    Whitespace(text).whitespace_subtest()
+            else:
+                with self.subTest(text=text):
+                    self.assertEqual(1, Whitespace(text).whitespace_subtest())

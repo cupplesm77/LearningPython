@@ -1,5 +1,7 @@
 # subtest.py
 
+import re
+
 
 class Whitespace:
     def __init__(self, text):
@@ -8,4 +10,8 @@ class Whitespace:
         self.text = text
 
     def whitespace_subtest(self):
-        return -1
+        pattern = "\s+"
+        remove_white = re.sub(pattern, " ", self.text).strip()
+        count = remove_white.count(" ")
+        print(f"remove_white = {remove_white}")
+        return count
