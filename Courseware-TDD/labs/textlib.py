@@ -58,7 +58,7 @@ class BodyOfText:
         text_list = remove_punctuation.split()
         x_counter = Counter(text_list)
         count_dict = dict(x_counter)
-        return {}
+        return count_dict
 
 
 # Part of Powerful Python Academy. Copyright MigrateUp LLC. All rights reserved.
