@@ -83,8 +83,44 @@ class TestBodyOfText(unittest.TestCase):
         self.assertEqual(expected31, BodyOfText(string31).paragraphs())
 
     def test_count_words(self):
-        string = "test"
-        self.assertEqual({"one": 1}, BodyOfText(string).wordcounts())
+        string = "Truth is beauty; beauty, truth"
+        pattern = "[,;.!?]"
+        expected = {"truth": 2, "is": 1, "beauty": 2}
+        self.assertEqual(expected, BodyOfText(string).wordcounts(pattern))
+
+    def test_wordcounts(self):
+        pattern = "[,;.!?]"
+        testitems = [
+            {
+                "text": "This is a sentence.",
+                "counts": {"this": 1, "is": 1, "a": 1, "sentence": 1},
+            },
+            {
+                "text": "Truth is beauty; beauty, truth.",
+                "counts": {"truth": 2, "beauty": 2, "is": 1},
+            },
+            {
+                "text": "I could finally SEE. But what I could see, remained a mystery.",
+                "counts": {
+                    "i": 2,
+                    "could": 2,
+                    "finally": 1,
+                    "see": 2,
+                    "but": 1,
+                    "what": 1,
+                    "remained": 1,
+                    "a": 1,
+                    "mystery": 1,
+                },
+            },
+        ]
+        for item in testitems:
+            with self.subTest(text=item["text"]):
+                expected = item["counts"]
+                count_words = BodyOfText(text=item["text"]).wordcounts(pattern)
+                self.assertEqual(expected, count_words)
+                # print(expected)
+                # print(count_words)
 
 
 class TestParagraph(unittest.TestCase):

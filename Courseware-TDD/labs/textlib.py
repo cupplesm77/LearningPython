@@ -1,8 +1,9 @@
 # textlib.py
 
 import re
+from collections import Counter
 
-# pattern for finding sentences
+# regex_pattern for finding sentences
 pattern = r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s"
 
 
@@ -50,7 +51,13 @@ class BodyOfText:
         par_list = self.text.split(self.split_str_paragraphs)
         return par_list
 
-    def wordcounts(self):
+    def wordcounts(self, regex_pattern):
+        counter_text = self.text.lower()
+        remove_punctuation = re.sub(regex_pattern, "", counter_text).strip()
+        # print(remove_punctuation)
+        text_list = remove_punctuation.split()
+        x_counter = Counter(text_list)
+        count_dict = dict(x_counter)
         return {}
 
 

@@ -3,6 +3,55 @@
 import re
 from collections import Counter
 
+# parsing a dictionary
+pattern = "[,;.!?]"
+test_items = [
+    {
+        "text": "This is a sentence.",
+        "counts": {"this": 1, "is": 1, "a": 1, "sentence": 1},
+    },
+    {
+        "text": "Truth is beauty; beauty, truth.",
+        "counts": {"truth": 2, "beauty": 2, "is": 1},
+    },
+    {
+        "text": "I could finally SEE. But what I could see, remained a mystery.",
+        "counts": {
+            "i": 2,
+            "could": 2,
+            "finally": 1,
+            "see": 2,
+            "but": 1,
+            "what": 1,
+            "remained": 1,
+            "a": 1,
+            "mystery": 1,
+        },
+    },
+]
+
+
+def wordcounts(regex_pattern, **kwargs):
+    # print(kwargs)
+    counter_text = kwargs["text"].lower()
+    remove_punctuation = re.sub(regex_pattern, "", counter_text).strip()
+    # print(remove_punctuation)
+    text_list = remove_punctuation.split()
+    x_counter = Counter(text_list)
+    count_dict = dict(x_counter)
+    count_dict = dict(
+        sorted(count_dict.items(), key=lambda item: item[1], reverse=True)
+    )
+    return count_dict
+
+
+for item in test_items:
+    expected = item["counts"]
+    count_words = wordcounts(pattern, text=item["text"])
+    print(expected)
+    print(count_words)
+
+
 # count the number of sentences in a simple sentence
 text = """This is a longer story.
 
