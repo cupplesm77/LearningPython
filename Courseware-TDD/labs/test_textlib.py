@@ -90,7 +90,7 @@ class TestBodyOfText(unittest.TestCase):
 
     def test_wordcounts(self):
         pattern = "[,;.!?]"
-        testitems = [
+        test_items = [
             {
                 "text": "This is a sentence.",
                 "counts": {"this": 1, "is": 1, "a": 1, "sentence": 1},
@@ -114,13 +114,11 @@ class TestBodyOfText(unittest.TestCase):
                 },
             },
         ]
-        for item in testitems:
+        for item in test_items:
             with self.subTest(text=item["text"]):
                 expected = item["counts"]
                 count_words = BodyOfText(text=item["text"]).wordcounts(pattern)
                 self.assertEqual(expected, count_words)
-                # print(expected)
-                # print(count_words)
 
 
 class TestParagraph(unittest.TestCase):

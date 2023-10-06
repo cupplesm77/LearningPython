@@ -19,10 +19,7 @@ class Paragraph:
         for wrd in self._words_with_period:
             all_words = re.findall(wrd, t_str)
             if all_words:
-                # print(all_words)
                 t_str = t_str.replace(wrd, "#####")
-                # all_words = []
-        # print(t_str)
         split_string = re.split(pattern, t_str)
         if self._null_string not in split_string:
             pass
@@ -37,8 +34,6 @@ class BodyOfText:
 
     def __init__(self, text):
         if text == "":
-            # print(f"\ntext == {text}")
-            # print("assert ValueError: ")
             raise ValueError("text can not be an empty string")
         self.text = text
 
@@ -54,11 +49,8 @@ class BodyOfText:
     def wordcounts(self, regex_pattern):
         counter_text = self.text.lower()
         remove_punctuation = re.sub(regex_pattern, "", counter_text).strip()
-        # print(remove_punctuation)
         text_list = remove_punctuation.split()
-        x_counter = Counter(text_list)
-        count_dict = dict(x_counter)
-        return count_dict
+        return dict(Counter(text_list))
 
 
 # Part of Powerful Python Academy. Copyright MigrateUp LLC. All rights reserved.
