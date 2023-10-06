@@ -1,6 +1,7 @@
 # imports
 import numpy as np
 import re
+from collections import defaultdict
 
 np.random.seed(444)
 
@@ -201,7 +202,6 @@ words = "beauty is truth truth beauty".split()
 # print(counts)
 
 # another way to perform the counting process
-from collections import defaultdict
 
 counts = defaultdict(int)
 for word in words:
@@ -231,7 +231,7 @@ except TypeError as error:
     print(f"TypeError: {error}")
 
 
-f = lambda x: x * x + 1.1
+f = lambda y: y * y + 1.1
 print(f(1))
 
 cplx_str1 = """ My favorite website is docs.python.org, with reddit.com coming in a close second."
@@ -244,12 +244,12 @@ print(mystring)
 
 # another example
 
-# pattern for finding sentences
+# regex_pattern for finding sentences
 pattern = r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s"
 
 
 class Paragraph:
-    # split_str_sentences = pattern
+    # split_str_sentences = regex_pattern
     null_string = ""
     _words_with_period = {"a.m.", "p.m.", "Mr.", "Mrs.", "Ms."}
 
@@ -257,15 +257,15 @@ class Paragraph:
         self.text = text
 
     def num_sentences(self):
-        t_str = self.text
+        my_str = self.text
         for wrd in self._words_with_period:
-            all_words = re.findall(wrd, t_str)
+            all_words = re.findall(wrd, my_str)
             if all_words:
                 print(all_words)
-                t_str = t_str.replace(wrd, "#####")
+                my_str = my_str.replace(wrd, "#####")
                 # all_words = []
-        print(t_str)
-        split_string = re.split(pattern, t_str)
+        print(my_str)
+        split_string = re.split(pattern, my_str)
         if self.null_string not in split_string:
             pass
         else:
