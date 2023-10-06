@@ -82,6 +82,10 @@ class TestBodyOfText(unittest.TestCase):
         self.assertEqual(3, BodyOfText(string3).num_paragraphs())
         self.assertEqual(expected31, BodyOfText(string31).paragraphs())
 
+    def test_count_words(self):
+        string = "test"
+        self.assertEqual({"one": 1}, BodyOfText(string).wordcounts())
+
 
 class TestParagraph(unittest.TestCase):
     def test_empty_paragraph(self):
