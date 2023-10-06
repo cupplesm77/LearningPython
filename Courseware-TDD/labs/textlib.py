@@ -18,10 +18,10 @@ class Paragraph:
         for wrd in self._words_with_period:
             all_words = re.findall(wrd, t_str)
             if all_words:
-                print(all_words)
+                # print(all_words)
                 t_str = t_str.replace(wrd, "#####")
                 # all_words = []
-        print(t_str)
+        # print(t_str)
         split_string = re.split(pattern, t_str)
         if self._null_string not in split_string:
             pass
@@ -35,21 +35,23 @@ class BodyOfText:
     split_str_paragraphs = "\n\n"
 
     def __init__(self, text):
+        if text == "":
+            # print(f"\ntext == {text}")
+            # print("assert ValueError: ")
+            raise ValueError("text can not be an empty string")
         self.text = text
 
     def num_paragraphs(self):
-        if self.text == "":
-            print(f"\ntext == {self.text}")
-            print("assert ValueError: ")
-            raise ValueError("text can not be empty")
-        else:
-            count = self.text.count(self.split_str_paragraphs)
-            number_paragraphs = count + 1
-            return number_paragraphs
+        count = self.text.count(self.split_str_paragraphs)
+        number_paragraphs = count + 1
+        return number_paragraphs
 
     def paragraphs(self):
         par_list = self.text.split(self.split_str_paragraphs)
         return par_list
+
+    def wordcounts(self):
+        return {}
 
 
 # Part of Powerful Python Academy. Copyright MigrateUp LLC. All rights reserved.

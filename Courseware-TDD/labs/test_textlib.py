@@ -70,8 +70,6 @@ class TestBodyOfText(unittest.TestCase):
     def test_empty_story(self):
         with self.assertRaises(ValueError):
             BodyOfText(string0).num_paragraphs()
-        # self.assertEqual(0, BodyOfText(string0).num_paragraphs())
-        # self.assertEqual(expected0, BodyOfText(string0).paragraphs())
 
     def test_single_paragraph1(self):
         self.assertEqual(1, BodyOfText(string1).num_paragraphs())

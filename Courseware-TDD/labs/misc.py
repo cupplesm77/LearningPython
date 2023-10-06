@@ -1,6 +1,7 @@
 # misc.py
 
 import re
+from collections import Counter
 
 # count the number of sentences in a simple sentence
 text = """This is a longer story.
@@ -17,6 +18,27 @@ print(f"string with new-lines removed = {text_replace}")
 
 text_count_sentences = 1 + text_replace.count(". ")
 print(f"number of sentences in text_replace = {text_count_sentences}")
+
+counter_text = "Truth is beauty; beauty, truth"
+counter_text = counter_text.lower()
+pattern = "[,;.!?]"
+remove_sep = re.sub(pattern, "", counter_text).strip()
+print(remove_sep)
+# using Counter from collections
+x = remove_sep.split()
+x_counter = Counter(x)
+print(dict(x_counter))
+
+
+counter = {}
+for letter in counter_text:
+    if letter != " ":
+        if letter not in counter:
+            counter[letter] = 0
+        counter[letter] += 1
+print(counter)
+counter_sorted = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+print(counter_sorted)
 
 
 # more regex
