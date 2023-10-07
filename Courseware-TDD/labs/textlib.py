@@ -50,6 +50,7 @@ class BodyOfText:
         counter_text = self.text.lower()
         remove_punctuation = re.sub(regex_pattern, "", counter_text).strip()
         text_list = remove_punctuation.split()
+        # return {}
         return dict(Counter(text_list))
 
 

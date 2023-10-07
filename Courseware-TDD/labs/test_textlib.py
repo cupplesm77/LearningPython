@@ -115,10 +115,11 @@ class TestBodyOfText(unittest.TestCase):
             },
         ]
         for item in test_items:
-            with self.subTest(text=item["text"]):
+            with self.subTest(**item):
+                # with self.subTest(text=item["text"], counts=item["counts"]):
                 expected = item["counts"]
-                count_words = BodyOfText(text=item["text"]).wordcounts(pattern)
-                self.assertEqual(expected, count_words)
+                body = BodyOfText(text=item["text"])
+                self.assertEqual(expected, body.wordcounts(pattern))
 
 
 class TestParagraph(unittest.TestCase):
