@@ -79,14 +79,17 @@ x_counter = Counter(x)
 print(dict(x_counter))
 
 
+print(counter_text)
+text_new = re.sub("[.!?;:,]", "", counter_text)
+print(text_new)
 counter = {}
-for letter in counter_text:
+for letter in text_new:
     if letter != " ":
         if letter not in counter:
             counter[letter] = 0
         counter[letter] += 1
 print(counter)
-counter_sorted = dict(sorted(counter.items(), key=lambda item: item[1], reverse=True))
+counter_sorted = dict(sorted(counter.items(), key=lambda itm: itm[1], reverse=True))
 print(counter_sorted)
 
 
@@ -127,3 +130,16 @@ print(text)
 pattern = "\s+"
 remove_white = re.sub(pattern, " ", text).strip()
 print(remove_white)
+
+
+text = """    WOW...! I could finally SEE: But what I could see, remained 
+        a mystery! """
+print(text)
+text1 = text.lower().strip()
+print(text1)
+text2 = re.sub("[.?!,;:\n]", "", text1).split()
+print(text2)
+count = dict(Counter(text2))
+print(count)
+count_dict = dict(sorted(count.items(), key=lambda itm: itm[1], reverse=True))
+print(count_dict)
