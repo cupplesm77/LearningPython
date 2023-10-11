@@ -4,7 +4,8 @@
 from dataclasses import dataclass, field
 
 
-# in the Observer class below:
+# in reference to the the Observer class below:  here are some statements from the python documentation:
+
 # If eq is false, __hash__() will be left untouched meaning the __hash__() method of the superclass
 # will be used ("if the superclass is object, this means it will fall back to id - based hashing").
 # https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass
@@ -13,7 +14,7 @@ from dataclasses import dataclass, field
 # @dataclass
 # @dataclass(eq=False)
 # @dataclass(unsafe_hash=True, eq=False)
-@dataclass(unsafe_hash=True)
+@dataclass(unsafe_hash=False)
 class Observer:
     name: str = field(default=None)
 
