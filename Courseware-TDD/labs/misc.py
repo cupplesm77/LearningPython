@@ -2,6 +2,43 @@
 
 import re
 from collections import Counter
+from dataclasses import dataclass
+
+
+@dataclass
+class Datastore:
+    name: str
+
+    def bmethod(self):
+        test_var = int("22")
+        return test_var
+
+
+# exercise in classes
+@dataclass
+class Aclass(Datastore):
+    name: str
+
+    def amethod(self):
+        x = self.bmethod()
+        return x
+
+
+test_data = Datastore("Datastore")
+aclass = Aclass("Aclass")
+print(f"Hello, my name is {aclass.name}")
+print(f"{aclass.name}'s data = {aclass.amethod()}")
+print(f"I use a class named {test_data.name} that stores data for me.")
+
+
+y = []
+for x in range(10):
+    y.append(x)
+# extract the last 5 records from y
+print(y)
+record = 5
+y_lastfive = y[-record:]
+print(y_lastfive)
 
 # parsing a dictionary
 pattern = "[,;.!?]"
