@@ -11,9 +11,9 @@ def dbconnect(address=None, username=None, password=None):
 
 @dataclass
 class Datastore:
-    address: str
-    username: str
-    password: str
+    address: str = None
+    username: str = None
+    password: str = None
 
     def __post_init__(self):
         self.conn = dbconnect(self.address, self.username, self.password)
