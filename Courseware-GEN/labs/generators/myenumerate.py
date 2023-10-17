@@ -1,33 +1,32 @@
 # myenumerate.py
 
-# from _collections_abc import Generator
-
-# here is how enumerate works
+# # here is how enumerate works
 pets = ["goat", "frog", "turtle"]
-enum1 = enumerate(pets)
-print(type(enum1))
-for idx, p in enum1:
-    print(idx, p)
+# enum1 = enumerate(pets)
+# print(type(enum1))
+# for idx, p in enum1:
+#     print(idx, p)
 
 
-class myenumerate():
-    def __init__(self, container):
-        if not isinstance(container, list) and not isinstance(container, set):
-           raise TypeError("input must be a list or a set")
-        range_container = range(len(container))
-        self._enum_container = list(zip(range_container, container))
+def myenumerate(container, *arg):
 
-    def __iter__(self):
-        return self
+    if not isinstance(container, list) and not isinstance(container, set):
+        raise TypeError("input must be a list or a set")
 
-    def __next__(self):
-        value = self._enum_container.pop(0)
-        return value
+    if len(arg) == 0:
+        start = 0
+        end = len(container)
+    else:
+        start = arg[0]
+        end = len(container) + arg[0]
+    range_container = range(start, end)
+    enum_container = list(zip(range_container, container))
+    for x in enum_container:
+        yield x
 
 
 pets_set = set(pets)
-enum_list = myenumerate(pets_set)
+enum_list = myenumerate(pets_set, 1)
 print(type(enum_list))
-for i in range(len(pets_set)):
+for idx in range(len(pets_set)):
     print(next(enum_list))
-
