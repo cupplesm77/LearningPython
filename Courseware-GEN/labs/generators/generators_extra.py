@@ -155,14 +155,89 @@ StopIteration
 
 '''
 
+
 # Write your code here:
+def myrange(*args):
+    # setup the start, stop, and step values for the "myrange" function
+    len_args = len(args)
+    if len_args == 1:
+        start = 0
+        end = args[0]
+        step = 1
+    elif len_args == 2:
+        start = args[0]
+        end = args[1]
+        step = 1
+    elif len_args == 3:
+        start = args[0]
+        end = args[1]
+        step = args[2]
+    else:
+        start = None
+        end = None
+        step = None
+
+    n = start
+    while n < end:
+        yield n
+        n += step
 
 
+def myenumerate(container, *arg):
+
+    if not isinstance(container, list) and not isinstance(container, set):
+        raise TypeError("input must be a list or a set")
+
+    if len(arg) == 0:
+        start = 0
+        end = len(container)
+    else:
+        start = arg[0]
+        end = len(container) + arg[0]
+    range_container = range(start, end)
+    enum_container = list(zip(range_container, container))
+    for x in enum_container:
+        yield x
+
+
+r1 = myrange(3)
+print(type(r1))
+# <class 'generator'>
+for num in r1: print(num)
+
+r2 = myrange(1, 4)
+print(type(r2))
+# <class 'generator'>
+for num in r2: print(num)
+
+r3 = myrange(1, 6, 2)
+print(type(r3))
+
+pets = ["goat", "frog", "turtle"]
+enum1 = myenumerate(pets)
+type(enum1)
+#<class 'generator'>
+next(enum1)
+# (0, 'goat')
+next(enum1)
+# (1, 'frog')
+next(enum1)
+# (2, 'turtle')
+next(enum1)
+
+enum2 = myenumerate(pets, 1)
+type(enum2)
+#<class 'generator'>
+next(enum2)
+next(enum2)
+next(enum2)
+next(enum2)
 
 # Do not edit any code below this line!
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
