@@ -83,6 +83,7 @@ that function to every item. Re-create it as mymap().
 >>> next(upper_pets)
 'FROG'
 >>> next(upper_pets)
+
 'TURTLE'
 >>> next(upper_pets)
 Traceback (most recent call last):
@@ -158,33 +159,65 @@ StopIteration
 
 # Write your code here:
 def myrange(*args):
-    # setup the start, stop, and step values for the "myrange" function
+    """
+
+    :param args: int
+    :return: int
+    """
+
+
+    # error checking on the args
+    print(f"myrange args are {args}")
     len_args = len(args)
-    if len_args == 1:
+    # ValueErrors
+    if len_args == 0:
+        raise ValueError(f"myrange must have at least one argument: myrange args are {args}")
+    if len_args > 3:
+        raise ValueError(f"myrange can not have more than 3 args")
+    if len_args == 2 and args[0] > args[1]:
+        raise ValueError(f"'start' cannot be greater than 'end': myrange args are {args}")
+    if len_args == 3 and args[2] > 0 and args[0] > args[1]:
+        raise ValueError(f"'start' cannot be greater than 'end': myrange args are {args}")
+    if len_args == 3 and args[2] < 0 and args[1] > args[0]:
+        raise ValueError(f"'start' cannot be greater than 'end': myrange args are {args}")
+    # TypeErrors
+    for arg in args:
+        if not isinstance(arg, int):
+            raise TypeError(f"myrange arguments must be type int: myrange args are {args}")
+
+    # set up the start, stop, and step values for the "myrange" function
+
+    if len_args == 1:     # myrange has one argument
         start = 0
         end = args[0]
         step = 1
-    elif len_args == 2:
+    elif len_args == 2:   # myrange has two arguments
         start = args[0]
         end = args[1]
         step = 1
-    elif len_args == 3:
+    elif len_args == 3:   # myrange has three arguments
         start = args[0]
         end = args[1]
         step = args[2]
-    else:
-        start = None
-        end = None
-        step = None
+    else:                 # myrange has greater than three arguments
+        return "myrange generator function has more than three args"
 
-    n = start
-    while n < end:
-        yield n
-        n += step
+    # counting up from a start value to an "end" value
+    if step > 0:
+        n = start
+        while n < end:
+            yield n
+            n += step
+
+    # counting down from a start value to an end value
+    if step < 0:
+        n = start
+        while n > end:
+            yield n
+            n += step
 
 
 def myenumerate(container, *arg):
-
     if not isinstance(container, list) and not isinstance(container, set):
         raise TypeError("input must be a list or a set")
 
@@ -216,7 +249,7 @@ print(type(r3))
 pets = ["goat", "frog", "turtle"]
 enum1 = myenumerate(pets)
 type(enum1)
-#<class 'generator'>
+# <class 'generator'>
 next(enum1)
 # (0, 'goat')
 next(enum1)
@@ -227,7 +260,7 @@ next(enum1)
 
 enum2 = myenumerate(pets, 1)
 type(enum2)
-#<class 'generator'>
+# <class 'generator'>
 next(enum2)
 next(enum2)
 next(enum2)
