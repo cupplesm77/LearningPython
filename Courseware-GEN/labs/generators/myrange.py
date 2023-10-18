@@ -13,15 +13,19 @@ def myrange(*args):
     if len_args == 0:
         raise ValueError(f"myrange must have at least one argument: myrange args are {args}")
     if len_args > 3:
-        raise ValueError
-    if len_args > 1 and args[0] > args[1]:
+        raise ValueError(f"myrange can not have more than 3 args")
+    if len_args == 2 and args[0] > args[1]:
+        raise ValueError(f"'start' cannot be greater than 'end': myrange args are {args}")
+    if len_args == 3 and args[2] > 0 and args[0] > args[1]:
+        raise ValueError(f"'start' cannot be greater than 'end': myrange args are {args}")
+    if len_args == 3 and args[2] < 0 and args[1] > args[0]:
         raise ValueError(f"'start' cannot be greater than 'end': myrange args are {args}")
     # TypeErrors
     for arg in args:
         if not isinstance(arg, int):
             raise TypeError(f"myrange arguments must be type int: myrange args are {args}")
 
-    # setup the start, stop, and step values for the "myrange" function
+    # set up the start, stop, and step values for the "myrange" function
 
     if len_args == 1:     # myrange has one argument
         start = 0
@@ -35,16 +39,27 @@ def myrange(*args):
         start = args[0]
         end = args[1]
         step = args[2]
-    else:                 # myrange has arguments outside bounds of one, two, or three
-        start = None
-        end = None
-        step = None
+    else:                 # myrange has greater than three arguments
+        return "myrange generator function has more than three args"
 
-    n = start
-    while n < end:
-        yield n
-        n += step
+    # counting up from a start value to an "end" value
+    if step > 0:
+        n = start
+        while n < end:
+            yield n
+            n += step
 
+    # counting down from a start value to an end value
+    if step < 0:
+        n = start
+        while n > end:
+            yield n
+            n += step
+
+
+#
+# test = myrange(3, -2, -1)
+# print(next(test))
 
 # tst_1_myrange = tst_myrange(1, 10, 2)
 # print(tst_1_myrange)
@@ -82,6 +97,3 @@ def myrange(*args):
 # testing range builtin
 # for num in range(-4, -2, 2):
 #     print(num)
-
-
-
