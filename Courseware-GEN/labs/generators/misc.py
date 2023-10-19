@@ -1,50 +1,5 @@
 # misc.py
-from myrange import myrange
-
-
-
-# f_obj = range(1, 10, 1, 2)
-f_obj = range()
-print(next(f_obj))
-
-def myitems(top):
-    for x in range(top, -1, -1):
-        yield x ** 2
-    yield "Done!"
-
-
-for item in myitems(3):
-    print(item)
-
-test = list(range(-4, 0, -1))
-print(test)
-
-gen_function = myrange(1, 4, 1, 1)
-print(type(gen_function))
-somethingelse = lambda: list(gen_function)
-print(somethingelse())
-
-gen_obj = range(10)
-print(type(gen_obj))
-
-
-def myfunc(x=0):
-    return x + 1
-
-
-f = myfunc
-print(type(f))
-print(f(10))
-
-# f = lambda x: x + 1
-# print(f(3))
-# print('')
-# print((lambda x: x + 1)(3))
-#
-# # # what does this mean?
-# something = lambda: x + 1
-# print(type(something))
-# print(something())
+# from myrange import myrange
 
 
 def myrange(*args):
@@ -78,19 +33,19 @@ def myrange(*args):
 
     # set up the start, stop, and step values for the "myrange" function
 
-    if numArgs == ONE:     # myrange has one argument
+    if numArgs == ONE:  # myrange has one argument
         start = ZERO
         end = args[ZERO]
         step = ONE
-    elif numArgs == TWO:   # myrange has two arguments
+    elif numArgs == TWO:  # myrange has two arguments
         start = args[ZERO]
         end = args[ONE]
         step = 1
-    elif numArgs == THREE:   # myrange has three arguments
+    elif numArgs == THREE:  # myrange has three arguments
         start = args[ZERO]
         end = args[ONE]
         step = args[TWO]
-    else:                 # myrange has greater than three arguments
+    else:  # myrange has greater than three arguments
         return "myrange generator function has more than three args"
 
     # counting up from a start value to an "end" value
@@ -108,13 +63,99 @@ def myrange(*args):
             n += step
 
 
-for n in myrange(11, -4, -2):
+# f_obj = range(1, 10, 1, 2)
+f_obj = iter(range(5))
+print(next(f_obj))
+
+f_obj = iter([1, 2, 3])
+print(next(f_obj))
+
+
+def myitems(top):
+    for x in range(top, -1, -1):
+        yield x ** 2
+    yield "Done!"
+
+
+for item in myitems(3):
+    print(item)
+
+test = list(range(-4, 0, -1))
+print(test)
+
+gen_function = myrange(1, 4, 1)
+print(type(gen_function))
+somethingelse = lambda: list(gen_function)
+print(somethingelse())
+
+gen_obj = range(10)
+print(type(gen_obj))
+
+
+def myfunc(x=0):
+    return x + 1
+
+
+f = myfunc
+print(type(f))
+print(f(10))
+
+# f = lambda x: x + 1
+# print(f(3))
+# print('')
+# print((lambda x: x + 1)(3))
+#
+# # # what does this mean?
+# something = lambda: x + 1
+# print(type(something))
+# print(something())
+
+
+obj = myrange(11, -4, -2)
+print(type(obj))
+obj_iter = iter(obj)
+print(type(obj_iter))
+try:
+    print(len(obj))
+except TypeError:
+    print("obj is a generator function and does not have a len")
+
+print(type(obj))
+test_iter = hasattr(obj, '__iter__')
+print(test_iter)
+for n in obj:
     print(n)
 
 
-for n in myrange(12.8, 40, 1):
-    print(n)
+# for n in myrange(12.8, 40, 1):
+#     print(n)
 
+
+def myzip(obj1, obj2):
+    len_tuple = min(len(obj1), len(obj2))
+    for idx in myrange(len_tuple):
+        mytuple = (obj1[idx], obj2[idx])
+        yield mytuple
+
+
+colors = ["purple", "orange", "silver"]
+instruments = ["trumpet", "guitar", "drum", "tuba"]
+
+pairs = myzip(colors, instruments)
+print(type(pairs))
+print(next(pairs))
+
+firstrange = myrange(4)
+print(type(firstrange))
+for i in firstrange:
+    print(i)
+secondrange = myrange(10, 26, 5)
+print(type(firstrange))
+pairs = myzip(firstrange, secondrange)
+print(type(pairs))
+# <class 'generator'>
+print(next(pairs))
+# (0, 10)
 #
 # r1 = myrange(3)
 # print(type(r1))
