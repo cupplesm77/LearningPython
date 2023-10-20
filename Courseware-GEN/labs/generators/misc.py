@@ -1,6 +1,34 @@
 # misc.py
 # from myrange import myrange
 
+def obj_func(x):
+    it = iter(letters)
+    while True:
+        try:
+            letter = next(it)
+        except StopIteration:
+            break
+        yield letter
+
+
+letters = ["a", "b", "c", "y"]
+
+it = iter(letters)
+while True:
+    try:
+        letter = next(it)
+    except StopIteration:
+        break
+    print(letter)
+
+f = obj_func(letters)
+print(type(f))
+print(next(f))
+print(next(f))
+print(next(f))
+print(next(f))
+next(f)
+
 
 def myrange(*args):
     """
@@ -132,30 +160,36 @@ for n in obj:
 
 
 def myzip(obj1, obj2):
-    len_tuple = min(len(obj1), len(obj2))
-    for idx in myrange(len_tuple):
-        mytuple = (obj1[idx], obj2[idx])
+    obj1_iter = iter(obj1)
+    obj2_iter = iter(obj2)
+    while True:
+        try:
+            mytuple = (next(obj1_iter), next(obj2_iter))
+        except StopIteration:
+            break
         yield mytuple
 
 
-colors = ["purple", "orange", "silver"]
-instruments = ["trumpet", "guitar", "drum", "tuba"]
-
-pairs = myzip(colors, instruments)
-print(type(pairs))
-print(next(pairs))
+# colors = ["purple", "orange", "silver"]
+# instruments = ["trumpet", "guitar", "drum", "tuba"]
+#
+# pairs = myzip(colors, instruments)
+# print(type(pairs))
+# print(next(pairs))
 
 firstrange = myrange(4)
 print(type(firstrange))
-for i in firstrange:
-    print(i)
 secondrange = myrange(10, 26, 5)
 print(type(firstrange))
 pairs = myzip(firstrange, secondrange)
 print(type(pairs))
 # <class 'generator'>
 print(next(pairs))
-# (0, 10)
+print(next(pairs))
+print(next(pairs))
+print(next(pairs))
+next(pairs)
+
 #
 # r1 = myrange(3)
 # print(type(r1))
