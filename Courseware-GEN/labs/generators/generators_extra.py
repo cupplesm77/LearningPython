@@ -232,10 +232,8 @@ def myenumerate(container, *arg):
         try:
             value = next(obj_iter)
         except StopIteration:
-            break
+            return
         yield value
-
-
 
 
 def uppercase(s):
@@ -253,7 +251,7 @@ def mymap(func, obj):
         try:
             value = next(obj_iter)
         except StopIteration:
-            break
+            return
         yield func(value)
 
 
@@ -264,10 +262,8 @@ def myzip(obj1, obj2):
         try:
             mytuple = (next(obj1_iter), next(obj2_iter))
         except StopIteration:
-            break
+            return
         yield mytuple
-
-
 
 
 r1 = myrange(3)
@@ -360,8 +356,7 @@ print(next(pairs))
 # (2, 20)
 print(next(pairs))
 # (3, 25)
-# next(pairs)
-
+next(pairs)
 
 # Do not edit any code below this line!
 
