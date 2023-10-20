@@ -83,7 +83,6 @@ that function to every item. Re-create it as mymap().
 >>> next(upper_pets)
 'FROG'
 >>> next(upper_pets)
-
 'TURTLE'
 >>> next(upper_pets)
 Traceback (most recent call last):
@@ -165,9 +164,8 @@ def myrange(*args):
     :return: int
     """
 
-
     # error checking on the args
-    print(f"myrange args are {args}")
+    # print(f"myrange args are {args}")
     len_args = len(args)
     # ValueErrors
     if len_args == 0:
@@ -187,19 +185,19 @@ def myrange(*args):
 
     # set up the start, stop, and step values for the "myrange" function
 
-    if len_args == 1:     # myrange has one argument
+    if len_args == 1:  # myrange has one argument
         start = 0
         end = args[0]
         step = 1
-    elif len_args == 2:   # myrange has two arguments
+    elif len_args == 2:  # myrange has two arguments
         start = args[0]
         end = args[1]
         step = 1
-    elif len_args == 3:   # myrange has three arguments
+    elif len_args == 3:  # myrange has three arguments
         start = args[0]
         end = args[1]
         step = args[2]
-    else:                 # myrange has greater than three arguments
+    else:  # myrange has greater than three arguments
         return "myrange generator function has more than three args"
 
     # counting up from a start value to an "end" value
@@ -229,14 +227,54 @@ def myenumerate(container, *arg):
         end = len(container) + arg[0]
     range_container = range(start, end)
     enum_container = list(zip(range_container, container))
-    for x in enum_container:
-        yield x
+    obj_iter = iter(enum_container)
+    while True:
+        try:
+            value = next(obj_iter)
+        except StopIteration:
+            break
+        yield value
+
+
+
+
+def uppercase(s):
+    return s.upper()
+
+
+def triple(num):
+    return 3 * num
+
+
+def mymap(func, obj):
+    obj_iter = iter(obj)
+    # new_list.append(f)
+    while True:
+        try:
+            value = next(obj_iter)
+        except StopIteration:
+            break
+        yield func(value)
+
+
+def myzip(obj1, obj2):
+    obj1_iter = iter(obj1)
+    obj2_iter = iter(obj2)
+    while True:
+        try:
+            mytuple = (next(obj1_iter), next(obj2_iter))
+        except StopIteration:
+            break
+        yield mytuple
+
+
 
 
 r1 = myrange(3)
 print(type(r1))
 # <class 'generator'>
-for num in r1: print(num)
+for num in r1:
+    print(num)
 
 r2 = myrange(1, 4)
 print(type(r2))
@@ -256,7 +294,7 @@ next(enum1)
 # (1, 'frog')
 next(enum1)
 # (2, 'turtle')
-next(enum1)
+# next(enum1)
 
 enum2 = myenumerate(pets, 1)
 type(enum2)
@@ -264,7 +302,66 @@ type(enum2)
 next(enum2)
 next(enum2)
 next(enum2)
-next(enum2)
+# next(enum2)
+
+upper_pets = mymap(uppercase, pets)
+print(type(upper_pets))
+# <class 'generator'>
+print(next(upper_pets))
+# 'GOAT'
+print(next(upper_pets))
+# 'FROG'
+print(next(upper_pets))
+# 'TURTLE'
+# next(upper_pets)
+
+tripled = mymap(triple, [2, 4, 6, 8])
+print(next(tripled))
+# 6
+print(next(tripled))
+# 12
+print(next(tripled))
+# 18
+print(next(tripled))
+# 24
+# next(tripled)
+
+colors = ["purple", "orange", "silver"]
+instruments = ["trumpet", "guitar", "drum"]
+pairs = myzip(colors, instruments)
+# print(isinstance(pairs, generator))
+# lpairs = list(pairs)
+# print(lpairs)
+print(pairs)
+print(type(pairs))
+# <class 'generator'>
+print(next(pairs))
+# ('purple', 'trumpet')
+print(next(pairs))
+# ('orange', 'guitar')
+print(next(pairs))
+# ('silver', 'drum')
+# next(pairs)
+
+vehicles = ["truck", "motorcycle", "hovercraft", "van"]
+for color, vehicle in myzip(colors, vehicles):
+    print(color + " " + vehicle)
+
+firstrange = myrange(4)
+secondrange = myrange(10, 26, 5)
+pairs = myzip(firstrange, secondrange)
+print(type(pairs))
+# <class 'generator'>
+print(next(pairs))
+# (0, 10)
+print(next(pairs))
+# (1, 15)
+print(next(pairs))
+# (2, 20)
+print(next(pairs))
+# (3, 25)
+# next(pairs)
+
 
 # Do not edit any code below this line!
 
