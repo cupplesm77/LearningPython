@@ -154,13 +154,16 @@ StopIteration
 '''
 
 from os.path import dirname, join
+
 this_directory = dirname(__file__)
+
 
 def fullpath(filename):
     '''Returns the full path of a file in this directory. Allows you to
     run the lab easily in an IDE, or from a different working directory.
     '''
     return join(this_directory, filename)
+
 
 # Write your code here:
 
@@ -173,15 +176,21 @@ def words_in_text(path):
             for word in line.rstrip('\n').split():
                 yield word.lower().rstrip("!,.")
 
+
 # Another solution. This one scales even if you feed it a 10TB text
 # file consisting of exactly one line.
 import re
+
+
 def words_in_text(path):
-    BUFFER_SIZE = 2**4 # In real code, use something like 2**20
+    BUFFER_SIZE = 2 ** 4  # In real code, use something like 2**20
+
     def read():
         return handle.read(BUFFER_SIZE)
+
     def normalize(chunk):
         return chunk.lower().rstrip(',!.\n')
+
     with open(path) as handle:
         buffer = read()
         start, end = 0, -1
@@ -193,13 +202,14 @@ def words_in_text(path):
                 start = match.end()
             new_buffer = read()
             if new_buffer == '':
-                break # end of file
+                break  # end of file
             buffer = buffer[start:] + new_buffer
             start, end = 0, -1
     # Yield last remaining word, if any
     word = normalize(buffer[start:])
     if word != '':
         yield word
+
 
 def book_records(path):
     with open(path) as lines:
@@ -215,10 +225,12 @@ def book_records(path):
             record[key] = value
         yield record
 
+
 # Do not edit any code below this line!
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')

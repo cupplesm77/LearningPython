@@ -154,7 +154,11 @@ StopIteration
 '''
 
 from os.path import dirname, join
+
 this_directory = dirname(__file__)
+
+import re
+
 
 def fullpath(filename):
     '''Returns the full path of a file in this directory. Allows you to
@@ -162,14 +166,110 @@ def fullpath(filename):
     '''
     return join(this_directory, filename)
 
+
 # Write your code here:
 
+def words_in_text(path):
+    with open(path) as handle:
+        for line in handle:  # note that the "handle" could be very long...potential bottleneck
+            line = line.rstrip("\n").lower()
+            line = re.sub(r"[.!?,]", "", line)
+            for word in line.split():
+                yield word
+
+
+def book_records(path):
+    with open(path) as lines:
+        record = {}
+        for line in lines:
+            if line == '\n':
+                yield record
+                record = {}
+                continue
+            key, value = line.rstrip('\n').split(': ', 1)
+            if key == 'price':
+                value = float(value)
+            record[key] = value
+        yield record
+
+
+words = words_in_text(fullpath("poem-simple.txt"))
+print(type(words))
+# <class 'generator'>
+for word in words:
+    print(word)
+
+books = book_records(fullpath("book-data-simple.txt"))
+print(type(books))
+# <class 'generator'>
+
+book = next(books)
+print(book['title'])
+# 'Ordinary Grace'
+print(book['author'])
+# 'William Kent Krueger'
+print(book['isbn'])
+# '1451645856'
+
+book = next(books)
+print(book['title'])
+# 'A Faithful Son'
+print(book['author'])
+# 'Michael Scott Garvin'
+print(book['isbn'])
+# '1519414730'
+
+book = next(books)
+book['title']
+# 'The Legacy of Lucy Harte'
+book['author']
+# 'Emma Heatherington'
+book['isbn']
+# '0008194866'
+# book = next(books)
+
+for word in words_in_text(fullpath("poem-full.txt")):
+    print(word)
+
+books = book_records(fullpath("book-data-complex.txt"))
+book = next(books)
+print(book['title'])
+# 'First and Only: A psychological thriller'
+print(book['author'])
+# 'Peter Flannery'
+print(book['isbn'])
+# '0957091907'
+print(book['price'])
+# 9.57
+
+book = next(books)
+print(book['title'])
+# 'A Man Called Ove'
+print(book['author'])
+# 'Fredrik Backman'
+print('isbn' in book)
+# False
+print('price' in book)
+# False
+
+book = next(books)
+print(book['title'])
+# "A Dog's Purpose: A Novel for Humans"
+print(book['author'])
+
+# 'W. Bruce Cameron'
+print(book['isbn'])
+# '0765330342'
+print(book['price'])
+# 8.92
+# book = next(books)
 
 
 # Do not edit any code below this line!
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
