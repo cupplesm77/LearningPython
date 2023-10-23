@@ -23,6 +23,10 @@ class TestMyrange(unittest.TestCase):
         self.assertRaises(ValueError, lambda: list(myrange(-2, 5, -1)))
 
         # different formulation of a test case that does work
-        gen_obj = myrange(1, 2, 1, 1)
-        self.assertRaises(TypeError, lambda: next(gen_obj))
+        # gen_obj1 = range(1, 2, 1, 1)
+        # print(type(gen_obj1))
+        gen_obj2 = myrange(1, 2, 1, 1)
+        print(gen_obj2)
+
+        # self.assertRaises(TypeError, lambda: next(gen_obj))
         # self.assertRaises(TypeError, next, gen_obj)

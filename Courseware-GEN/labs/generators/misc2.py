@@ -1,4 +1,45 @@
 # misc2.py
+from itertools import combinations
+import numpy as np
+import pandas as pd
+
+d = {'col1': [1, 2], 'col2': [3, 4]}
+df = pd.DataFrame(data=d)
+print(df)
+
+d = {'col1': ['a'], 'col2': [5]}
+df = pd.DataFrame(data=d)
+print(df)
+
+mdict = {'Temperature': [3068],
+         'L': [0.002],
+         'R': [0.17],
+         'A_M': [16.12],
+         'Color': ["Red"],
+         "Spectral_Class": ["M"],
+         'Type': [0]
+         }
+
+print(mdict)
+
+df = pd.DataFrame(data=mdict)
+
+print(df)
+
+for irows, row in df.iterrows():
+    print(row, '\n')
+
+
+languages = ['Python', 'R', 'SQL', 'Julia']
+programmers = combinations(languages, 2)
+print(*programmers)
+
+
+record = {}
+string = 'Address: 122 North Ave.'
+key, value = string.rstrip('\n').split(': ', 1)
+record[key] = value
+print(record)
 
 def myrange(*args):
     """
@@ -38,7 +79,7 @@ def myrange(*args):
     elif numArgs == TWO:  # myrange has two arguments
         start = args[ZERO]
         end = args[ONE]
-        step = 1
+        step = ONE
     elif numArgs == THREE:  # myrange has three arguments
         start = args[ZERO]
         end = args[ONE]
@@ -61,6 +102,13 @@ def myrange(*args):
             n += step
 
 
+gen_obj = myrange(2, 7, 1)
+g = lambda: next(gen_obj)
+g()
+for x in gen_obj:
+    print(x)
+# print(next(gen_obj))
+
 # in the range example below, the gen_obj1 see an exception upon formation:
 # gen_obj1 = range(1, 2, 1, 1)
 # C:\Users\gravi\Powerful_Python\Courseware-GEN\venv\Scripts\python.exe C:\Users\gravi\Powerful_Python\Courseware-GEN\labs\generators\misc2.py
@@ -72,10 +120,11 @@ def myrange(*args):
 
 
 # myrange function does not raise an exception until it reaches the next(gen_obj2) line
-gen_obj2 = myrange(1, 2, 1, 1)
-print(type(gen_obj2))
-print(gen_obj2)
-# here is where the TypeError exception is raised:
-num = next(gen_obj2)
-# never reaches the next line for this example argument list
-print(num)
+myrange(1, 2, 1, 1)
+# gen_obj2 = myrange(1, 2, 1, 1)
+# print(type(gen_obj2))
+# print(gen_obj2)
+# # here is where the TypeError exception is raised:
+# num = next(gen_obj2)
+# # never reaches the next line for this example argument list
+# print(num)

@@ -1,6 +1,16 @@
 # misc.py
 # from myrange import myrange
 
+
+mytext = "The boy ran down the path with great gusto!\n\nThen he strolled at leisure."
+print(mytext)
+print('')
+mytext2 = ("""The boy ran down the path with great gusto!
+Then he strolled at leisure.""")
+print(mytext2)
+
+
+
 def obj_func(x):
     it = iter(letters)
     while True:
@@ -27,7 +37,7 @@ print(next(f))
 print(next(f))
 print(next(f))
 print(next(f))
-next(f)
+# next(f)
 
 
 def myrange(*args):
@@ -188,7 +198,7 @@ print(next(pairs))
 print(next(pairs))
 print(next(pairs))
 print(next(pairs))
-next(pairs)
+# next(pairs)
 
 #
 # r1 = myrange(3)
@@ -253,3 +263,8 @@ next(pairs)
 # print(type(f))
 # for i in range(5):
 #     print(next(f))
+
+# gen_obj1 = range(1, 2, 1, 1)
+# print(type(gen_obj1))
+gen_obj2 = myrange(1, 2, 1, 1)
+print(gen_obj2)

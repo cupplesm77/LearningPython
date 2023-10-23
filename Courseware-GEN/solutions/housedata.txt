@@ -1,0 +1,19 @@
+# File data includes:  address = address of the house, area of the house in sq. ft., and the house price in dollars
+
+address: 1457 Tony Street
+square_feet: 1705
+price_usd: 344275
+
+address: 454 Johnston N. Ave
+square_feet: 1824
+price_usd: 388476
+
+address: 1222 Janice Dr.
+square_feet: 2001
+price_usd: 445185
+
+address: 101 S. Players Club Dr.
+square_feet: 2010
+price_usd: 489746
+
+
