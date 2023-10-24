@@ -55,12 +55,66 @@ Make it case-insensitive too:
 # Write your code here:
 
 
+squares = [x ** 2 for x in range(9)]
+print(squares)
+# [0, 1, 4, 9, 16, 25, 36, 49, 64]
+
+cubes = [x ** 3 for x in range(6)]
+print(cubes)
+# [0, 1, 8, 27, 64, 125]
+
+squares_of_evens = [x ** 2 for x in range(9) if x % 2 == 0]
+print(squares_of_evens)
+# [0, 4, 16, 36, 64]
+
+
+def palindromes(slist):
+    return [x + x[::-1] for x in slist]
+
+
+print(palindromes(["foo", "bar"]))
+# ['foooof', 'barrab']
+
+print(palindromes(["ab", "cat", "q", "qq"]))
+# ['abba', 'cattac', 'qq', 'qqqq']
+
+print(palindromes(["abc", "xyz"]))
+# ['abccba', 'xyzzyx']
+
+
+def starting_with(first_letter, nlist):
+    return [name for name in nlist if name[0] == first_letter.upper()]
+
+
+names = ["Albert", "Fred", "Amanda", "Tim", "Joe", "Aaron"]
+names2 = ["George", "Gus", "Aaron", "Ted", "Gina"]
+
+# Write a function "starting_with" that gives you names starting with a
+# certain letter. Its body should just have a return statement,
+# returning a list comprehension.
+
+print(starting_with("A", names))
+# ['Albert', 'Amanda', 'Aaron']
+print(starting_with("F", names))
+# ['Fred']
+print(starting_with("G", names2))
+# ['George', 'Gus', 'Gina']
+print(starting_with("A", names2))
+# ['Aaron']
+
+# Make it case-insensitive too:
+print(starting_with("a", names))
+# ['Albert', 'Amanda', 'Aaron']
+print(starting_with("g", names2))
+# ['George', 'Gus', 'Gina']
+
 
 # Do not edit any code below this line!
 
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
