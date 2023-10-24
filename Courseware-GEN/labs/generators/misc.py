@@ -1,6 +1,15 @@
 # misc.py
 # from myrange import myrange
 
+colors = ['blue', 'indigo', 'violet']
+toys = ['boat', 'car', 'train']
+
+mlist = [color + " " + toy for color in colors for toy in toys]
+print(mlist)
+
+
+mlist1 = [color + " " + toy for toy in toys for color in colors]
+print(mlist1)
 
 mytext = "The boy ran down the path with great gusto!\n\nThen he strolled at leisure."
 print(mytext)

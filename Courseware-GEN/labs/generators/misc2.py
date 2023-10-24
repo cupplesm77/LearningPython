@@ -3,6 +3,21 @@ from itertools import combinations
 import numpy as np
 import pandas as pd
 
+l = [x for x in range(10)]
+print(type(l))
+for lx in l:
+    print(lx)
+l_iter = iter(l)
+print(type(l_iter))
+next(l_iter)
+next(l_iter)
+next(l_iter)
+for ly in l_iter:
+    print(ly)
+for ly in l_iter:
+    print(ly)
+next(l_iter)
+
 d = {'col1': [1, 2], 'col2': [3, 4]}
 df = pd.DataFrame(data=d)
 print(df)
@@ -134,3 +149,24 @@ print(num)
 # never reaches the next line for this example argument list
 num = next(gen_obj2)
 print(num)
+
+mdict = {'Temperature': [3068, 4112],
+         'L': [0.002, 0.003],
+         'R': [0.17, 0.18],
+         'A_M': [16.12, 17.1],
+         'Color': ["Red", "Orange"],
+         "Spectral_Class": ["M", "M"],
+         'Type': [0, 0]
+         }
+
+# views of a dictionary  :  separate but tied to a dictionary
+print(type(mdict))
+print(type(mdict.items()))
+for param, value in mdict.items():
+    print(f"{param}: {value}")
+for key in mdict.keys():
+    print(f"key: {key}")
+for value in mdict.values():
+    print(f"value: {value}")
+
+
