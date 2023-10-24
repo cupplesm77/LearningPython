@@ -11,13 +11,13 @@ d = {'col1': ['a'], 'col2': [5]}
 df = pd.DataFrame(data=d)
 print(df)
 
-mdict = {'Temperature': [3068],
-         'L': [0.002],
-         'R': [0.17],
-         'A_M': [16.12],
-         'Color': ["Red"],
-         "Spectral_Class": ["M"],
-         'Type': [0]
+mdict = {'Temperature': [3068, 4112],
+         'L': [0.002, 0.003],
+         'R': [0.17, 0.18],
+         'A_M': [16.12, 17.1],
+         'Color': ["Red", "Orange"],
+         "Spectral_Class": ["M", "M"],
+         'Type': [0, 0]
          }
 
 print(mdict)
@@ -102,12 +102,13 @@ def myrange(*args):
             n += step
 
 
-gen_obj = myrange(2, 7, 1)
+gen_obj = iter(myrange(2, 7, 1))
+print(next(gen_obj))
 g = lambda: next(gen_obj)
-g()
+print(g())
 for x in gen_obj:
     print(x)
-# print(next(gen_obj))
+print(next(gen_obj))
 
 # in the range example below, the gen_obj1 see an exception upon formation:
 # gen_obj1 = range(1, 2, 1, 1)
@@ -118,13 +119,18 @@ for x in gen_obj:
 # TypeError: range expected at most 3 arguments, got 4
 # print(type(gen_obj1))
 
+x = range(10)
+print(type(x))
+print(next(x))
 
 # myrange function does not raise an exception until it reaches the next(gen_obj2) line
-myrange(1, 2, 1, 1)
-# gen_obj2 = myrange(1, 2, 1, 1)
-# print(type(gen_obj2))
-# print(gen_obj2)
-# # here is where the TypeError exception is raised:
-# num = next(gen_obj2)
-# # never reaches the next line for this example argument list
-# print(num)
+myrange(1, 2, 1)
+gen_obj2 = myrange(1, 3, 1)
+print(type(gen_obj2))
+print(gen_obj2)
+# here is where the TypeError exception is raised:
+num = next(gen_obj2)
+print(num)
+# never reaches the next line for this example argument list
+num = next(gen_obj2)
+print(num)
