@@ -69,7 +69,18 @@ garments = ['hat', 'belt', 'bell bottoms', 'cape', 'trench coat']
 # Write your code here:
 pairs = [(x, y) for x in range(3) for y in range(2)]
 
-brief_combos = [color + ' ' + garment for color in colors for garment in garments ]
+combos = [color + ' ' + garment
+                for color in colors
+                for garment in garments]
+
+for combo in combos:
+    print(combo)
+
+brief_combos = [color + ' ' + garment
+                for color in colors
+                for i, garment in enumerate(garments)
+                if i % 2 != 0 or i == 0]
+
 for combo in brief_combos:
     print(combo)
 
@@ -78,6 +89,7 @@ for combo in brief_combos:
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
