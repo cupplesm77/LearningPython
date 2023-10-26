@@ -2,6 +2,7 @@
 from itertools import combinations
 import numpy as np
 import pandas as pd
+import numpy as np
 
 l = [x for x in range(10)]
 print(type(l))
@@ -16,7 +17,7 @@ for ly in l_iter:
     print(ly)
 for ly in l_iter:
     print(ly)
-next(l_iter)
+# next(l_iter)
 
 d = {'col1': [1, 2], 'col2': [3, 4]}
 df = pd.DataFrame(data=d)
@@ -123,7 +124,7 @@ g = lambda: next(gen_obj)
 print(g())
 for x in gen_obj:
     print(x)
-print(next(gen_obj))
+# print(next(gen_obj))
 
 # in the range example below, the gen_obj1 see an exception upon formation:
 # gen_obj1 = range(1, 2, 1, 1)
@@ -136,7 +137,7 @@ print(next(gen_obj))
 
 x = range(10)
 print(type(x))
-print(next(x))
+# print(next(x))
 
 # myrange function does not raise an exception until it reaches the next(gen_obj2) line
 myrange(1, 2, 1)
@@ -170,3 +171,36 @@ for value in mdict.values():
     print(f"value: {value}")
 
 
+car = {'Year of Launch': [1999, np.nan, 1986, 2020, np.nan,
+                          1991, 2007, 2011, 2001, 2017],
+       'Engine Number': [0.0, 15, 22, 43, 44, 0.0,
+                         55, 0.0, 57, np.nan],
+       'Chasis Unique Id': [4023, np.nan, 3115, 4522, 3643,
+                            3774, 2955, np.nan, 3587, np.nan]}
+
+# Create the dataframe
+df = pd.DataFrame(car, columns=['Year of Launch', 'Engine Number',
+                                'Chasis Unique Id'])
+print(df)
+df_filter = df['Engine Number'].isnull()
+print(df[df_filter])
+
+for irow, row in df.iterrows():
+    if row['Engine Number'] == 0.0:
+        row['Year of Launch'] = 0.0
+
+print(df)
+
+df['Engine Number'] = df['Engine Number'][df_filter].apply(lambda x: 0.0)
+print(df)
+
+df.dropna(subset=['Chasis Unique Id'], inplace=True)
+
+print(df)
+
+y = range(10)
+for x in y:
+    print(x)
+f = lambda x: 0
+xlist = [f(x) for x in y]
+print(xlist)
