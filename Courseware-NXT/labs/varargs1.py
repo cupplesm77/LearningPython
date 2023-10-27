@@ -1,18 +1,27 @@
 # varargs1.py
+'''
+Python uses * and ** for two very different things:
+
+   * Variable arguments (when defining a function)
+   * Argument unpacking (when calling a function)
+'''
 
 def print_args(*args):
     for arg in args:
         print(arg)
 
+
 def print_kwargs(**kwargs):
     for key, value in kwargs.items():
         print(f"{key} -> {value}")
+
 
 def print_all(*args, **kwargs):
     for arg in args:
         print(arg)
     for key, value in kwargs.items():
         print(f"{key} -> {value}")
+
 
 def add_to_dict(stuff, *args, **kwargs):
     for key, value in kwargs.items():
@@ -21,8 +30,10 @@ def add_to_dict(stuff, *args, **kwargs):
 
     return stuff
 
+
 def normal_function(a, b, c):
     print(f"a: {a} b: {b} c: {c}")
+
 
 numbers = (3, 2, 1)
 
@@ -31,6 +42,16 @@ normal_function(*numbers)
 other_numbers = {'a': 1, 'b': 1, 'c': 1}
 
 normal_function(**other_numbers)
+
+
+def another_normal_function(a, b, c=1, d=2, e=300):
+    return a + b + c + d + e
+
+
+nums = (3, 5)
+extras = {'d': 5, 'e': 2}
+print(another_normal_function(*nums, **extras))
+
 
 def order_book(title, author, isbn):
     """
@@ -55,7 +76,6 @@ def get_required_textbook(class_id):
 book = get_required_textbook(4242)
 print(book)
 order_book(*book)
-
 
 print_args('red', 'blue', 'green')
 print("")
