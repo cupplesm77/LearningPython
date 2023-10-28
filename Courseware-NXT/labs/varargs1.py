@@ -6,6 +6,15 @@ Python uses * and ** for two very different things:
    * Argument unpacking (when calling a function)
 '''
 
+def max_even(*args):
+    print(f'args = {args}')
+    if args == ():
+        return None
+    else:
+        return max([x for x in args if x%2 == 0])
+
+print(max_even())
+print(max_even(3,5,1,69,13,2))
 
 def print_args(*args):
     for arg in args:
@@ -90,6 +99,14 @@ set_destination(*point)
 
 set_destination(**coordinates)
 # Going to x=8, y=33, z=-4
+
+
+def product(a, b, c):
+    return a * b * c
+
+
+def total(a, b, c):
+    return a + b + c
 
 
 book = get_required_textbook(4242)
