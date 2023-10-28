@@ -70,12 +70,20 @@ def total(*args, **kwargs):
 def max_even(*args):
     return max([x for x in args if x%2 == 0])
 
-def set_destination(*point):
-    return None
 
+# IMPORANT HINT: Remember that * and ** are used for two different
+# things: when _calling_ a function (argument unpacking), and when
+# _defining_ a function (varargs).
+def set_destination(*args, **kwargs):
+    if args:
+        print(f"Going to x={args[0]}, y={args[1]}, z={args[2]}")
 
+    if kwargs:
+        v = []
+        for value in kwargs.values():
+            v.append(value)
+        print(f"Going to x={v[0]}, y={v[1]}, z={v[2]}")
 
-# Do not edit any code below this line!
 
 if __name__ == '__main__':
     import doctest
