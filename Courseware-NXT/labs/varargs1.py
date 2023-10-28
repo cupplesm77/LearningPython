@@ -6,6 +6,7 @@ Python uses * and ** for two very different things:
    * Argument unpacking (when calling a function)
 '''
 
+
 def print_args(*args):
     for arg in args:
         print(arg)
@@ -71,6 +72,24 @@ def get_required_textbook(class_id):
     :return:
     """
     return "Coloring with Great Enthusiasm", "Joseph Nash", 22447788
+
+
+def set_destination(x, y, z):
+        print(f"Going to x={x}, y={y}, z={z}")
+
+
+point = (3, 8, 2)
+coordinates = {'x': 8, 'y': 33, 'z': -4}
+
+# IMPORANT HINT: Remember that * and ** are used for two different
+# things: when _calling_ a function (argument unpacking), and when
+# _defining_ a function (varargs).
+
+set_destination(*point)
+# Going to x=3, y=8, z=2
+
+set_destination(**coordinates)
+# Going to x=8, y=33, z=-4
 
 
 book = get_required_textbook(4242)
