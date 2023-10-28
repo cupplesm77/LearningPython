@@ -43,7 +43,35 @@ Going to x=8, y=33, z=-4
 
 '''
 
+
 # Write your code here:
+def product(*args, **kwargs):
+    prod = 1
+    if args:
+        for arg in args:
+            prod *= arg
+    if kwargs:
+        for key, value in kwargs.items():
+            prod *= value
+    return prod
+
+
+def total(*args, **kwargs):
+    sum = 0
+    if args:
+        for arg in args:
+            sum += arg
+    if kwargs:
+        for key, value in kwargs.items():
+            sum += value
+    return sum
+
+
+def max_even(*args):
+    return max([x for x in args if x%2 == 0])
+
+def set_destination(*point):
+    return None
 
 
 
@@ -51,6 +79,7 @@ Going to x=8, y=33, z=-4
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
