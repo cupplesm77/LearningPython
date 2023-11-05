@@ -2,3 +2,4 @@
 slides/
 venv/
 __pycache__/
+.spyproject/
