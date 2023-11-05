@@ -2,3 +2,7 @@
 slides/
 venv/
 __pycache__/
+*.pdf
+*.csv
+labs/stack-overflow-developer-survey-2023
+labs/*.png
