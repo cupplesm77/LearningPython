@@ -1,0 +1,5 @@
+# top level .gitignore
+.idea/
+livecoded-api-server_download/
+*.pdf
+backup/
