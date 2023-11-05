@@ -30,14 +30,24 @@ passed-in keyword arguments.
 
 '''
 
-# Write your code here:
 
+# Write your code here:
+def val_for_longest_key(**kwargs):
+    keys = [key for key in kwargs.keys()]
+    max_key = max(keys, key=len)
+    return kwargs[max_key]
+
+
+def key_for_biggest_value(**kwargs):
+    key_biggest_value = max(kwargs, key=kwargs.get)
+    return key_biggest_value
 
 
 # Do not edit any code below this line!
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
