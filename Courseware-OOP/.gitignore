@@ -1,3 +1,4 @@
 .idea/
 slides/
 venv/
+__pycache__/
