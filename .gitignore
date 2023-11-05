@@ -3,3 +3,8 @@
 livecoded-api-server_download/
 *.pdf
 backup/
+/Courseware-OOP/.spyproject/
+/Courseware-GEN/.idea/
+/Courseware-NXT/.idea/
+/Courseware-OOP/.idea/
+/Courseware-TDD/.idea/
