@@ -98,15 +98,42 @@ Got value from diff: 0
 
 '''
 
+
 # Write your code here:
+def rounded(func):
+    def wrapper(*args, **kwargs):
+        return round(func(*args, **kwargs))
+    return wrapper
 
 
+import math
+
+
+def floor(func):
+    def wrapper(*args, **kwargs):
+        return math.floor(func(*args, **kwargs))
+    return wrapper
+
+
+def shout(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs).upper()
+    return wrapper
+
+
+def printvalue(func):
+    def wrapper(*arg, **kwargs):
+        f = func(*arg, **kwargs)
+        print(f"Got value from diff: {f}")
+        return f
+    return wrapper
 
 
 # Do not edit any code below this line!
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
