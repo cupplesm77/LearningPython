@@ -40,11 +40,14 @@ Modify your code to use lambda expressions instead of separately defined key fun
 
 
 # Write your code here:
-def most_spaces(items):
-    def num_spaces(s):
-        return s.count(" ")
+# def most_spaces(items):
+#     def num_spaces(s):
+#         return s.count(" ")
+#
+#     return max(items, key=num_spaces)
 
-    return max(items, key=num_spaces)
+def most_spaces(items):
+    return max(items, key=lambda x: x.count(" "))
 
 
 def fewest_vowels(xlist):
@@ -64,12 +67,7 @@ def most_consonants(ylist):
 
 
 def sorted_by_word_count(xlist):
-    def num_words(x):
-        return len(x.split())
-
-    sorted_list = sorted(xlist, key=num_words)
-
-    return sorted_list
+    return sorted(xlist, key=lambda x: len(x.split()))
 
 # Do not edit any code below this line!
 
