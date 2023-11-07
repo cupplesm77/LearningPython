@@ -1,5 +1,33 @@
 # misc2.py
 
+class Test:
+    def __init__(self, name, x):
+        self._name = name
+        self._x = x
+
+    @property
+    def name(self):
+        return self._name + self._x
+
+
+t = Test("Tim", "Jones")
+print(t.name)
+
+
+class Toast:
+    def __init__(self, name, number):
+        self._name = name
+        self._number = number
+        self.Full_Name = self._name + self._number
+
+    @property
+    def name(self):
+        return self._name + self._number
+
+
+joe = Toast('Joe', "444")
+print(joe.identity)
+
 consonants = "bcdfghjklmnpqrstvwxyz" + "bcdfghjklmnpqrstvwxyz".upper()
 print(consonants)
 
@@ -16,14 +44,18 @@ one_line_poems = [
     "The dance of the flowers kissed by the butterflies.",
 ]
 
+
 def sorted_by_word_count(xlist):
     sorted_list = sorted(xlist, key=lambda x: len(x.split()))
     return sorted_list
+
 
 print(sorted_by_word_count(one_line_poems))
 
 for poem in sorted_by_word_count(one_line_poems):
     print(poem)
+
+
 # The land runs astoundingly under my soles.
 # A sunrise smiles wide into my expectant face.
 # The dance of the flowers kissed by the butterflies.
@@ -40,17 +72,20 @@ def fewest_vowels(xstr):
 
 
 print(fewest_vowels(one_line_poems))
+
+
 # 'The land runs astoundingly under my soles.'
 
 def most_consonants(ystr):
     def num_consonants(x):
         consonants = "bcdfghjklmnpqrstvwxyz" + "bcdfghjklmnpqrstvwxyz".upper()
         return len([y for y in x if y in consonants])
+
     return max(ystr, key=num_consonants)
+
 
 print(most_consonants(one_line_poems))
 'The dogs are barking at the stillness, the stillness is still.'
-
 
 # count the number of spaces in a string
 xstr = "a b c"
