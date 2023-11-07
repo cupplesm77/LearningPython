@@ -100,13 +100,13 @@ Got value from diff: 0
 
 
 # Write your code here:
+
+import math
+
 def rounded(func):
     def wrapper(*args, **kwargs):
         return round(func(*args, **kwargs))
     return wrapper
-
-
-import math
 
 
 def floor(func):
