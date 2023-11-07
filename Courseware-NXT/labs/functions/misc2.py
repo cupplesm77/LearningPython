@@ -17,9 +17,7 @@ one_line_poems = [
 ]
 
 def sorted_by_word_count(xlist):
-    def num_words(x):
-        return len(x.split())
-    sorted_list = sorted(xlist, key=num_words)
+    sorted_list = sorted(xlist, key=lambda x: len(x.split()))
     return sorted_list
 
 print(sorted_by_word_count(one_line_poems))
