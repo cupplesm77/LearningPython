@@ -53,8 +53,18 @@ CALLING: q 7
 
 '''
 
-# Write your code here:
 
+# Write your code here:
+def memoize(func):
+    cache = {}
+
+    def wrapper(*args, **kwargs):
+        key = args
+        if key not in cache:
+            cache[key] = func(*args, **kwargs)
+        return cache[key]
+
+    return wrapper
 
 
 # Do not edit any code below this line!
@@ -64,23 +74,28 @@ def f(x):
     print(f"CALLING: f {x}")
     return x ** 2
 
+
 @memoize
 def g(x, y):
     print(f"CALLING: g {x} {y}")
     return (2 - x) / y
+
 
 @memoize
 def h(x, y, z=42):
     print(f"CALLING: h {x} {y} {z}")
     return z // (x + y)
 
+
 @memoize
 def q(x):
     print(f"CALLING: q {x}")
     return x ** 3
 
+
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
