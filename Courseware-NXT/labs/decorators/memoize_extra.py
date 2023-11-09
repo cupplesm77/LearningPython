@@ -67,12 +67,46 @@ CALLING: h 3 2 31
 6
 
 '''
+
+
 # Implement a memoize decorator that saves up to the two most recent
 # calls.  (I.e., an LRU cache with max size of 2.)
 # HINT: While not necessary, it may help to use the collections module.
 
 # Write your code here:
+from collections import defaultdict
 
+# cache = defaultdict(list)
+# keys = defaultdict(list)
+CACHE_SIZE = 2
+def memoize(func):
+    cache = defaultdict(list)
+    keys = defaultdict(list)
+
+    def wrapper(*args, **kwargs):
+        key = args
+
+        if len(cache) < CACHE_SIZE:
+            if key in cache:
+                cache[key].append(cache[key][0])
+            else:
+                cache[key].append(func(*args, **kwargs))
+
+        elif len(cache) == CACHE_SIZE:
+            if key in cache:
+                cache[key].append(cache[key][0])
+            else:
+                last_key = keys["keys"][-1]
+                for ckey in cache.keys():
+                    if ckey != last_key:
+                        save_key = ckey
+                cache.pop(save_key)
+                cache[key].append(func(*args, **kwargs))
+
+        keys["keys"].append(key)
+        return cache[key][0]
+
+    return wrapper
 
 
 # Do not edit any code below this line!
@@ -82,21 +116,24 @@ def f(x):
     print(f"CALLING: f {x}")
     return x ** 2
 
+
 @memoize
 def g(x, y):
     print(f"CALLING: g {x} {y}")
     return (2 - x) / y
+
 
 @memoize
 def h(x, y, z=42):
     print(f"CALLING: h {x} {y} {z}")
     return z // (x + y)
 
+
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
-
 
 # Part of Powerful Python. Copyright MigrateUp LLC. All rights reserved.
