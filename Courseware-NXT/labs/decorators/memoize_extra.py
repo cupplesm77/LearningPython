@@ -76,35 +76,30 @@ CALLING: h 3 2 31
 # Write your code here:
 from collections import defaultdict
 
-# cache = defaultdict(list)
-# keys = defaultdict(list)
+
 CACHE_SIZE = 2
 def memoize(func):
-    cache = defaultdict(list)
+    cache = {}
     keys = defaultdict(list)
 
     def wrapper(*args, **kwargs):
         key = args
 
         if len(cache) < CACHE_SIZE:
-            if key in cache:
-                cache[key].append(cache[key][0])
-            else:
-                cache[key].append(func(*args, **kwargs))
+            if key not in cache:
+                cache[key] = func(*args, **kwargs)
 
         elif len(cache) == CACHE_SIZE:
-            if key in cache:
-                cache[key].append(cache[key][0])
-            else:
+            if key not in cache:
                 last_key = keys["keys"][-1]
                 for ckey in cache.keys():
                     if ckey != last_key:
                         save_key = ckey
                 cache.pop(save_key)
-                cache[key].append(func(*args, **kwargs))
+                cache[key] = func(*args, **kwargs)
 
         keys["keys"].append(key)
-        return cache[key][0]
+        return cache[key]
 
     return wrapper
 
