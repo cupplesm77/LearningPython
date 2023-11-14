@@ -77,13 +77,13 @@ CALLING: h 3 2 31
 from collections import defaultdict
 
 
-CACHE_SIZE = 2
+CACHE_SIZE = 3
 def memoize(func):
     cache = {}
     keys = defaultdict(list)
 
     def wrapper(*args, **kwargs):
-        key = args
+        key = (args, tuple(sorted(kwargs.items())))
 
         if len(cache) < CACHE_SIZE:
             if key not in cache:
@@ -94,8 +94,8 @@ def memoize(func):
                 last_key = keys["keys"][-1]
                 for ckey in cache.keys():
                     if ckey != last_key:
-                        save_key = ckey
-                cache.pop(save_key)
+                        pop_key = ckey
+                cache.pop(pop_key, None)
                 cache[key] = func(*args, **kwargs)
 
         keys["keys"].append(key)
