@@ -2,7 +2,23 @@
 """
 Created on Sat Aug 19 21:36:09 2023
 
-@author: gravi
+I attempted to incorporate @classmethod for two use cases:
+    1) alternate constructors, e.g. interface_one and interface_two
+    2) changing class variables, e.g. change_default_age, etc.
+
+Want to get a quick code review of my set of simple classes that apply classmethods.
+Questions:
+
+Do you consider the classes with classmethods as incorporating best practices?
+
+Do you see interesting improvements needed for my class contrivances?
+
+what about encapsulation?
+
+What about my use of inheritance?
+
+Using default class variables as method default parameter values?
+
 """
 
 # ************************ ClassMethods ************************************
