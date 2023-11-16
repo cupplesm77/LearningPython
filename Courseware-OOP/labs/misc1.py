@@ -30,7 +30,7 @@ class Officer():
     def interface_two(cls, name, rank):
         """
         An alternative contructor:
-        A different interface than interface_one and the baseclass interface
+        A different interface than constructor_one and the baseclass interface
         Only includes name and rank call list parameters
         """
         name = name

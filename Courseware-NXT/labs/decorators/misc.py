@@ -3,7 +3,7 @@
 from collections import defaultdict
 
 # Version using lists
-MAX_SIZE = 2
+MAX_SIZE = 3
 def memoize(func):
     cache = {}
     order = []
