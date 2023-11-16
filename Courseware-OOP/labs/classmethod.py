@@ -27,7 +27,7 @@ from dataclasses import dataclass, field
 
 
 # ************************ ClassMethods ************************************
-USE_DEFAULT_RANK = object()
+USE_DEFAULT_RANK = object()    # Sentinel Value usage
 GLOBAL_RANK_DEFAULT = "First Lieutenant"
 @dataclass
 class Officer:
@@ -105,19 +105,17 @@ print(army_officer0.name)
 print(army_officer0.age)
 print(army_officer0.rank)
 
-officer1 = Marine.constructor_one("Cupples", 42, "Colonel")
+print("")
+
+officer1 = Marine.constructor_one("Cupples", 42)
 print(officer1.name)
 print(officer1.age)
 print(officer1.rank)
-print(f"Officer1's first age: {officer1.age}")
-
-print(f"Officer1's revised age: {officer1.age}")
-print(f"Officer1's revised age: {officer1.age}")
-officer1.age = 41
+officer1.age = 44
 print(f"Officer1's revised age: {officer1.age}")
 
 print("")
-officer2 = Marine.constructor_one("Jones", 29, "Major")
+officer2 = Marine.constructor_one("Jones", 29, "Colonel")
 print(officer2.name)
 print(officer2.rank)
 print(officer2.age)
