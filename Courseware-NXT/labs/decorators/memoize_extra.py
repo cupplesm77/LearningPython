@@ -77,7 +77,7 @@ CALLING: h 3 2 31
 from collections import defaultdict
 
 
-CACHE_SIZE = 3
+CACHE_SIZE = 2
 def memoize(func):
     cache = {}
     keys = defaultdict(list)
