@@ -140,4 +140,9 @@ try:
 except NameError:
     print("constructor_two does not have an age attribute")
 
+print("")
+Officer.rank_default = "Captain"
+officer_new = Officer()
+print(officer_new.rank)
+
 # ************************ ClassMethods: END ************************************
