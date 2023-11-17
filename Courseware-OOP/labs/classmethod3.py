@@ -1,4 +1,4 @@
-# classmethod2.py
+# classmethod3.py
 """
 Follow-up on prior question about using @classmethod
 Revised question.
@@ -74,13 +74,13 @@ while i < 3:
 
     # no.of.arguments = 3
     elif len(inp) == 3:
-        p = EvalEquations.eq1(inp)
-        print("equation 1 :", p.ans)
+        q = EvalEquations.eq1(inp)
+        print("equation 1 :", q.ans)
 
     # More than three arguments
     else:
-        p = EvalEquations.eq3(inp)
-        print("equation 3 :", p.ans)
+        r = EvalEquations.eq3(inp)
+        print("equation 3 :", r.ans)
 
     # increment loop
     i += 1
@@ -102,18 +102,18 @@ while i < 3:
 
     # no.of.arguments = 2
     if len(inp) == 2:
-        p = EvalEquations.eq2(inp)
-        print("equation 2 :", p.ans)
+        t = EvalEquations.eq2(inp)
+        print("equation 2 :", t.ans)
 
     # no.of.arguments = 3
     elif len(inp) == 3:
-        p = EvalEquations.eq1(inp)
-        print("equation 1 :", p.ans)
+        u = EvalEquations.eq1(inp)
+        print("equation 1 :", u.ans)
 
     # More than three arguments
     else:
-        p = EvalEquations.eq3(inp)
-        print("equation 3 :", p.ans)
+        v = EvalEquations.eq3(inp)
+        print("equation 3 :", v.ans)
 
     # increment loop
     i += 1
