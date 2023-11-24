@@ -1,4 +1,4 @@
-Timestamp	customerId	pageId
+Timestamp	CustomerId	PageId
 day1	17	3
 day1	21	7
 day1	25	1
@@ -10,7 +10,7 @@ day1	23	5
 day1	24	2
 day2	17	7
 day2	24	2
-day2	24	8
+day2	24	2
 day2	18	5
 day2	28	8
 day2	21	8
