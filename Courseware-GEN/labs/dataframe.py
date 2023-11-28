@@ -60,22 +60,22 @@ def load_survey_df(path, analysis_flag):
         'ConvertedCompYearly': 'Compensation_Dollar_PerYear'
     }
 
-    def extra_filter(df):
+    def extra_filter0(df):
         df_new = df[df['Years_Coding'] >= 4.0]  # stack overflow user is over a range of experience
         df2 = df_new[df_new['Years_Coding'] <= 50.0]
         df2.reset_index(drop=True, inplace=True)
         return df2
 
-    def extra_filter0(df):
+    def extra_filter1(df):
         df_new = df[df['Years_Coding'] >= 2.0]  # stack overflow user is relatively inexperienced
         df2 = df_new[df_new['Years_Coding'] <= 4.0]
         df2.reset_index(drop=True, inplace=True)
         return df2
 
     if analysis_flag == "experienced":
-        f_obj = extra_filter
-    elif analysis_flag == "inexperienced":
         f_obj = extra_filter0
+    elif analysis_flag == "inexperienced":
+        f_obj = extra_filter1
     else:
         f_obj = None
 
