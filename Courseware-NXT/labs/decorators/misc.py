@@ -3,10 +3,11 @@
 from collections import defaultdict
 
 # Version using lists
-MAX_SIZE = 3
+MAX_SIZE = 20
 def memoize(func):
     cache = {}
     order = []
+
     def wrapper(*args, **kwargs):
         key = (args, tuple(sorted(kwargs.items())))
         if key in cache:
@@ -19,8 +20,10 @@ def memoize(func):
             old_key = order.pop()
             del cache[old_key]
         return cache[key]
+
     return wrapper
 
+# This version of memoize does not work for size > 2 : not a good cache model
 CACHE_SIZE = 2
 def memoize2(func):
     cache = {}
@@ -53,15 +56,26 @@ def f(x):
     print(f"CALLING: f {x}")
     return x ** 2
 
+
 @memoize
 def g(x, y):
     print(f"CALLING: g {x} {y}")
     return (2 - x) / y
 
+
 @memoize
 def h(x, y, z=42):
     print(f"CALLING: h {x} {y} {z}")
     return z // (x + y)
+
+
+for i in range(25):
+    print(f(i))
+print("")
+for i in range(7, 20, 1):
+    print(f(i))
+
+
 
 print(f(2))
 # CALLING: f 2

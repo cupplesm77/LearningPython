@@ -149,9 +149,67 @@ Another one:
 
 # Write your code here:
 
+def mod(num):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            f = (args[0] + args[1]) % num
+            return f
+        return wrapper
+    return decorator
 
 
-# Do not edit any code below this line!
+def repeat(number_of_times):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for idx in range(number_of_times):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+def transform(x, y):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            return func(*args, **kwargs) * x + y
+        return wrapper
+    return decorator
+
+
+def clip(x, y):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            f = func(*args, **kwargs)
+            if f > y:
+                return y
+            elif x < f <= y:
+                return f
+            else:
+                return x
+        return wrapper
+    return decorator
+
+# >>> @clip(0, 2)
+# ... def extrapolate(x):
+# ...     return x + 1
+#
+# The values it returns for different inputs:
+#
+# >>> extrapolate(0)
+# 1
+# >>> extrapolate(0.5)
+# 1.5
+# >>> extrapolate(1)
+# 2
+# >>> extrapolate(2.1)
+# 2
+# >>> extrapolate(10)
+# 2
+# >>> extrapolate(10000)
+# 2
+# >>> extrapolate(-1)
+# 0
+# >>> extrapolate(-10000)
+# 0
 
 if __name__ == '__main__':
     import doctest

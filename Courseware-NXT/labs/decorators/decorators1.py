@@ -1,5 +1,46 @@
 # decorators1.py
 
+print(7 % 3)
+
+# decorator that passes a parameter
+def add(arg):
+    """
+    Adds two to a  function evaluated at *args and **kwargs
+
+    Parameters
+    ----------
+    arg
+
+    Returns
+    -------
+    a decorator function that adds the parameter arg to a function
+    """
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            f = func(*args, **kwargs)
+            return f + arg
+        return wrapper
+    return decorator
+
+@add(3)
+def f(x):
+    """
+    multiply a function by 2
+
+    Parameters
+    ----------
+    x
+
+    Returns
+    -------
+    x * 2
+    """
+    return x + 2
+
+print(f.__name__)
+print(f(4))
+
+
 def shout(func):
     def wrapper(*args, **kwargs):
         return func(*args, **kwargs).upper()

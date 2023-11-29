@@ -16,8 +16,9 @@ to include the issue of changing class variables.
 
 
 """
-class EvalEquations:
 
+
+class EvalEquations:
     # an artificial class variable
     interesting_var = 1
 
@@ -29,13 +30,13 @@ class EvalEquations:
     @classmethod
     def eq1(cls, args):
         # create an object for the class to return
-        x = cls( ((args[0] * args[0]) + (args[1] * args[1]) - args[2]) * cls.interesting_var)
+        x = cls(((args[0] * args[0]) + (args[1] * args[1]) - args[2]) * cls.interesting_var)
         return x
 
     # expression 2
     @classmethod
     def eq2(cls, args):
-        y = cls( ((args[0] * args[0]) - (args[1] * args[1])) * cls.interesting_var)
+        y = cls(((args[0] * args[0]) - (args[1] * args[1])) * cls.interesting_var)
         return y
 
     # expression 3
@@ -48,8 +49,9 @@ class EvalEquations:
             temp += args[i] * args[i]
 
         temp = temp / max(args)
-        z = cls( (temp) * cls.interesting_var)
+        z = cls(temp * cls.interesting_var)
         return z
+
 
 print("")
 eeq = EvalEquations([1, 2, 3])
@@ -85,6 +87,10 @@ while i < 3:
     # increment loop
     i += 1
 
+objs = [p, q, r]
+for obj in objs:
+    print(f"obj name: {obj}, ans: {obj.ans}, var: {obj.interesting_var}")
+print("")
 # ******** Here is where things get interesting from the standpoint of changing class variables *********
 # Do you see this next set of code as using best practices????????
 
@@ -92,6 +98,13 @@ print("")
 print("Change Eval Class Variable")
 EvalEquations.interesting_var = 2
 print(f"EvalEquations Class Variable: 'interesting_var' is now equal to {EvalEquations.interesting_var}")
+print("")
+
+# see how the interesting_var has been re-set to 2 in the objs already created....WOW
+objs = [p, q, r]
+for obj in objs:
+    print(f"obj name: {obj}, ans: {obj.ans}, var: {obj.interesting_var}")
+print("")
 
 li = [[1, 2], [1, 2, 3], [1, 2, 3, 4, 5]]
 i = 0
@@ -118,3 +131,6 @@ while i < 3:
     # increment loop
     i += 1
 
+objs = [p, q, r, t, u, v]
+for obj in objs:
+    print(f"obj name: {obj}, ans: {obj.ans}, var: {obj.interesting_var}")
