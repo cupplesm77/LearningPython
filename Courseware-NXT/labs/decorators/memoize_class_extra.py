@@ -77,6 +77,48 @@ Let's ensure @Memoize is a class-based decorator, not function-based.
 
 # Write your code here:
 
+# # Version using lists
+# MAX_SIZE = 2
+# def memoize(func):
+#     cache = {}
+#     order = []
+#     def wrapper(*args, **kwargs):
+#         key = (args, tuple(sorted(kwargs.items())))
+#         if key in cache:
+#             pos = order.index(key)
+#             order.pop(pos)
+#         else:
+#             cache[key] = func(*args, **kwargs)
+#         order.insert(0, key)
+#         while len(order) > MAX_SIZE:
+#             old_key = order.pop()
+#             del cache[old_key]
+#         return cache[key]
+#     return wrapper
+
+
+MAX_SIZE = 2
+class Memoize:
+    """
+    class decorator to memoize a function
+    """
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+        self.order = []
+
+    def __call__(self, *args, **kwargs):
+        key = (args, tuple(sorted(kwargs.items())))
+        if key in self.cache:
+            pos = self.order.index(key)
+            self.order.pop(pos)
+        else:
+            self.cache[key] = self.func(*args, **kwargs)
+        self.order.insert(0, key)
+        while len(self.order) > MAX_SIZE:
+            old_key = self.order.pop()
+            del self.cache[old_key]
+        return self.cache[key]
 
 
 # Do not edit any code below this line!
