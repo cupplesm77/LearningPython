@@ -32,6 +32,11 @@ Pro tips:
 
 # Write your code here:
 
+def hello(string):
+    return 'Hello, world!'
+
+def print_hello(string):
+    print(f"Hello, {string}!")
 
 
 # Do not edit any code below this line!
