@@ -1,6 +1,6 @@
 '''
 
->>> di_all = DateInterval.all()
+>>> di_all = DateInterval.total_time()
 
 In the year 3000:
 
@@ -70,8 +70,33 @@ False
 '''
 
 # Write your code here:
+import datetime
+from params import args_start, args_end, days
+class DateInterval:
+    BEGINNING_OF_TIME = datetime.date(*args_start)
+    END_OF_TIME =  datetime.date(*args_end)
 
+    def __init__(self, start, end):
+        if start is None:
+            start = self.BEGINNING_OF_TIME
+        if end is None:
+            end = self.END_OF_TIME
+        assert  start <= end, f"(start, end): ({start}, {end}"
+        self.start = start
+        self.end = end
 
+    def __iter__(self):
+        when = self.start
+        while when <= self.end:
+            yield when
+            when += datetime.timedelta(days=days)
+
+    @classmethod
+    def total_time(cls):
+        return cls(cls.BEGINNING_OF_TIME, cls.END_OF_TIME)
+
+    def __contains__(self, adate):
+        return self.start <= adate <= self.end
 
 # Do not edit any code below this line!
 
