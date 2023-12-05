@@ -5,8 +5,8 @@ import math
 
 class Point:
     """
-    class Point has been constructed to expose the attributes
-    "x" and "y" to the public.
+    class Point has been refactored to expose the attributes
+    "r" and "p" to the public rather than "x" and "y"
 
     @property was employed to the attributes with the foresight that the future
     may hold the changing of internal implementation of a given attribute.
