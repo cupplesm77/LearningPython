@@ -10,82 +10,68 @@ class Point:
 
     @property was employed to the attributes with the foresight that the future
     may hold the changing of internal implementation of a given attribute.
+
+    functional relationship between x,y and p,q:
+    p = x + y
+    q = y - x
+
+    x = (p - q) / 2.0
+    y = (p + q) / 2.0
+
     """
 
     def __init__(self, x, y):
-        try:
-            self._x = float(x)
-            print("Validated")
-        except ValueError:
-            raise ValueError('"x" must be a real number') from None
-        try:
-            self._y = float(y)
-            print("Validated")
-        except ValueError:
-            raise ValueError('"y" must be a real number') from None
-        self._p = x + y
-        self._q = y - x
+        self.x = x
+        self.y = y
 
+    # ******* x getter and setter
     @property
     def x(self):
         return self._x
 
     @x.setter
     def x(self, value):
-        try:
-            self._x = float(value)
-            print("Validated")
-        except ValueError:
-            raise ValueError('"x" must be a number') from None
-        self._p = self._x + self._y
-        self._q = self._y - self._x
+        self._x = float(value)
 
+    # ******* y getter and setter
     @property
     def y(self):
         return self._y
 
     @y.setter
     def y(self, value):
-        try:
-            self._y = float(value)
-            print("Validated")
-        except ValueError:
-            raise ValueError('"y" must be a number') from None
-        self._p = self._x + self._y
-        self._q = self._y - self._x
+        self._y = float(value)
 
+
+    # ******* p getter and setter
     @property
     def p(self):
-        return self._p
+        return self.x + self.y
 
     @p.setter
     def p(self, value):
-        try:
-            self._p = float(value)
-            print("Validated")
-        except ValueError:
-            raise ValueError('"p" must be a number') from None
-        self._x = (self._p - self._q) / 2.0
-        self._y = (self._p + self._q) / 2.0
+        self._p = float(value)
+        self._x = (value - self.q) / 2.0
+        self._y = (value + self.q) / 2.0
 
+
+    # ******* q getter and setter
     @property
     def q(self):
-        return self._q
+        return self.y - self.x
 
     @q.setter
     def q(self, value):
-        try:
-            self._q = float(value)
-            print("Validated")
-        except ValueError:
-            raise ValueError('"q" must be a number') from None
-        self._x = (self._p - self._q) / 2.0
-        self._y = (self._p + self._q) / 2.0
+        self._q = float(value)
+        self._x = (self.p - value) / 2.0
+        self._y = (self.p + value) / 2.0
 
+
+    # ******* instance methods
     def hypotenuse(self):
         return math.sqrt(self.x * self.x + self.y * self.y)
 
-
+# ******* Test cases *********************************
 point1 = Point(1, 1)
 
 print(f"x = {point1.x}")
@@ -105,7 +91,7 @@ print(f"point1.p = {point1.p}")
 print(f"point1.q = {point1.q}")
 print("")
 
-print(f"hypotenuse = {point1.hypotenuse()}")
+print(f"hypotenuse for point1 = {point1.hypotenuse()}")
 print("")
 
 point2 = Point(2, 2)
@@ -125,3 +111,7 @@ print(f"y = {point2.y}")
 print("")
 print(f"point2.p = {point2.p}")
 print(f"point2.q = {point2.q}")
+print("")
+
+print(f"hypotenuse for point2 = {point2.hypotenuse()}")
+print("")
