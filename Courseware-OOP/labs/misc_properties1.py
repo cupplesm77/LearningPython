@@ -6,7 +6,7 @@ import math
 class Point:
     """
     class Point has been refactored to expose the attributes
-    "r" and "p" to the public rather than "x" and "y"
+    "r" and "p" to the public;  "x" and "y" remain available as well.
 
     @property was employed to the attributes with the foresight that the future
     may hold the changing of internal implementation of a given attribute.
@@ -31,7 +31,7 @@ class Point:
 
     @x.setter
     def x(self, value):
-        self._x = float(value)
+        self._x = float(value)   # float already has an associated exception
 
     # ******* y getter and setter
     @property
@@ -40,7 +40,7 @@ class Point:
 
     @y.setter
     def y(self, value):
-        self._y = float(value)
+        self._y = float(value)   # float already has an associated exception
 
 
     # ******* p getter and setter
@@ -51,8 +51,8 @@ class Point:
     @p.setter
     def p(self, value):
         self._p = float(value)
-        self._x = (value - self.q) / 2.0
-        self._y = (value + self.q) / 2.0
+        self.x = (value - self.q) / 2.0
+        self.y = (value + self.q) / 2.0
 
 
     # ******* q getter and setter
@@ -63,8 +63,8 @@ class Point:
     @q.setter
     def q(self, value):
         self._q = float(value)
-        self._x = (self.p - value) / 2.0
-        self._y = (self.p + value) / 2.0
+        self.x = (self.p - value) / 2.0
+        self.y = (self.p + value) / 2.0
 
 
     # ******* instance methods
