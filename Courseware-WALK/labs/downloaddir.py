@@ -71,6 +71,7 @@ False
 
 '''
 
+
 # These utility functions are used by the tests above. Don't touch 'em!
 
 def _testdir():
@@ -81,17 +82,69 @@ def _testdir():
     atexit.register(lambda: shutil.rmtree(dirname))
     return dirname
 
+
 def _touch(path):
     "Create an empty file at path, if it doesn't already exist."
     from pathlib import Path
     p = Path(path)
     p.touch()
 
+
 from os.path import join as path_join
 from os.path import exists as file_exists
 
-
 # Write your code here:
+import os
+import tempfile
+import shutil
+
+class DownloadDir:
+    class InvalidStateException(Exception):
+        "Indicates contents of download directory are invalid/corrupted"
+
+    def __init__(self, path):
+        self.path = path
+
+    @classmethod
+    def create(cls):
+        download_dir = tempfile.mkdtemp()
+        cls._check_path(download_dir)
+        return cls(download_dir)
+
+    def __del__(self):
+        self._check_path(self.path)
+        shutil.rmtree(self.path)
+
+    @staticmethod
+    def _check_path(path):
+        assert len(path) > 2, path
+
+    def move_downloaded_file(self, dest):
+        downloaded = self.current_file()
+        assert downloaded is not None, "No downloaded file to publish yet"
+        src = os.path.join(self.path, downloaded)
+        shutil.move(src, dest)
+
+    def current_file(self):
+        items = sorted(os.listdir(self.path))
+        if len(items) == 0:
+            item = None
+        elif len(items) == 1:
+            item = items[0]
+        elif len(items) == 2:
+            if len(items[0]) < len(items[1]):
+                shorter, longer = items[0], items[1]
+            else:
+                shorter, longer = items[1], items[0]
+            if longer != shorter + '.crdownload':
+                raise self.InvalidStateException(items)
+            item = longer
+        else:
+            raise self.InvalidStateException(items)
+        return item
+
+
+
 
 
 
@@ -99,9 +152,9 @@ from os.path import exists as file_exists
 
 if __name__ == '__main__':
     import doctest
+
     count, _ = doctest.testmod()
     if count == 0:
         print('*** ALL TESTS PASS ***\nGive someone a HIGH FIVE!')
 
 # Part of Powerful Python. Copyright MigrateUp LLC. All rights reserved.
-

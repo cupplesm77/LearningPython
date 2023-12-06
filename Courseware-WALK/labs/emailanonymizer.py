@@ -21,6 +21,15 @@
 
 # Write your code here:
 
+class EmailAnonymizer:
+    def __init__(self):
+        self.index = 0
+        self.mapping = {}
+    def __call__(self, email):
+        if email not in self.mapping:
+            self.mapping[email] = f'anon{self.index}@powerfulpython.com'
+            self.index += 1
+        return self.mapping[email]
 
 
 # Do not edit any code below this line!
