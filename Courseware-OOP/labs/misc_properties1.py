@@ -115,3 +115,5 @@ print("")
 
 print(f"hypotenuse for point2 = {point2.hypotenuse()}")
 print("")
+
+bad_point = Point('test', 2)

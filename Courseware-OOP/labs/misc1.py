@@ -7,7 +7,10 @@ Created on Sat Aug 19 21:36:09 2023
 
 # ************************ ClassMethods ************************************
 
-class Officer():
+class Officer:
+    """
+
+    """
     RANK_DEFAULT = "Colonel"
     NAME_DEFAULT = "John Wayne"
     AGE_DEFAULT = 37
@@ -114,12 +117,12 @@ print(f"officer2's current age: {officer3.age}")
 s = {2 ** x for x in range(10)}
 
 
-class A():
+class A:
     def __init__(self, x):
         self.x = x
 
 
-class B():
+class B:
     def __init__(self, name):
         self.name = name
 
@@ -127,7 +130,7 @@ class B():
         self.name = self.name.upper()
         print(self.name)
 
-    l = [1]
+    test_list = [1]
 
     def method2(self, y):
         print(type(y))
@@ -153,18 +156,18 @@ print(ml)
 # ********************** Sorting *******************************
 
 # sort a list in python
-l = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'AX', 'Ax', 'A']
+test_list = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'AX', 'Ax', 'A']
 
 # default sort
-l_sorted = sorted(l)
+l_sorted = sorted(test_list)
 print(l_sorted)
 
 # key sort, lower
-l_sorted_key_lower = sorted(l, key=str.lower)
+l_sorted_key_lower = sorted(test_list, key=str.lower)
 print(l_sorted_key_lower)
 
 # key sort, upper
-l_sorted_key_upper = sorted(l, key=str.upper)
+l_sorted_key_upper = sorted(test_list, key=str.upper)
 print(l_sorted_key_upper)
 
 # why is there no difference between lower and upper sorts?
@@ -198,7 +201,7 @@ people_sorted_by_key = dict(sorted(people.items()))
 print(people_sorted_by_key)
 
 # sort by value
-people_sorted_by_value = dict(sorted(people.items(), \
+people_sorted_by_value = dict(sorted(people.items(),
                                      key=lambda item: item[1]))
 print(people_sorted_by_value)
 
@@ -210,25 +213,25 @@ ml.pop(2)
 print(ml)
 
 # enumerate
-l = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'A']
-for idx, li in enumerate(l):
+test_list = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'A']
+for idx, li in enumerate(test_list):
     print(idx, li)
     # j = idx
     for ll in li:
         if 'a' == ll:
-            l.pop(0)
-    print(l)
+            test_list.pop(0)
+    print(test_list)
 
-l = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'A', 'A19', 'Eight', 'nine']
+test_list = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'A', 'A19', 'Eight', 'nine']
 # construct a filter matrix that selects the 
 l_filter = [True, True, False, False, True, True, True, False, False]
 k = 0
 for j, ll in enumerate(l_filter):
     print(j, ll)
     if ll == True:
-        l.pop(j - k)
+        test_list.pop(j - k)
         k = k + 1
-print(l)
+print(test_list)
 
 
 # *********************************************
@@ -389,7 +392,6 @@ print(func.__closure__)
 print(type(func.__closure__))
 print(len(func.__closure__))
 print(func.__closure__[0].cell_contents)
-func.__closure__[0].cell_contents
 
 x_tuple = 2,
 print(x_tuple)
@@ -505,10 +507,10 @@ class Orc(Creature):
     def select_target(self, creatures):
         # sort creatures in rank of worst armor
         # print(sorted(creatures, key=lambda x: x.armor, reverse=False))
-        creatures_worst_armor = \
-            sorted(creatures, \
-                   key=lambda x: x.armor, \
-                   reverse=False)
+        creatures_worst_armor = sorted(creatures,
+                   key=lambda x: x.armor,
+                   reverse=False
+                                       )
 
         # determine if the list of creatures are only Orcs or HillOrcs
         length_creatures = len(creatures_worst_armor)
@@ -773,13 +775,13 @@ class ChildClass2(ParentClass2):
 
 pclass = ChildClass2()
 pclass.my_tuple()
-pclass.x_str
+print(pclass.x_str)
 
 # sentinal values
 
-l = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'A', 'A19', 'Eight', 'nine']
+test_list = ['anX', 'YaAaX', 'xyz', 'XaYZ', 'kaxyz', 'A', 'A19', 'Eight', 'nine']
 l_filter = [True, True, False, False, True, True, True, False, False]
-test_dict = {d: e for d, e in zip(l, l_filter)}
+test_dict = {d: e for d, e in zip(test_list, l_filter)}
 print(test_dict)
 
 # MISSING will be my sentinal value
@@ -796,3 +798,12 @@ if val2 is MISSING:
     print(f'key, "{key2}" is MISSING')
 else:
     print(f'key, "{key2}" is in dictionary, val={val2}')
+
+
+'''
+assertion format:
+assert EXPRESSION, OBJECT
+'''
+
+# use an assert statement in the code when a
+
