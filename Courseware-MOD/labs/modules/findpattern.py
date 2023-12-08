@@ -6,12 +6,8 @@ import sys
 # demonstrating how main guard operates
 print(f"we are using {__name__}")
 print("")
-def grepfile(pattern, path):
-    with open(path) as handle:
-        for line in handle:
-            if pattern in line:
-                yield line.rstrip("\n")
 
+from greputils import grepfile, grepfilei
 
 # main guard
 if __name__ == "__main__":
