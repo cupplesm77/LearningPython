@@ -68,16 +68,12 @@ logging.basicConfig(level=log_level,
                     format=log_format
                     )
 
-# CRITICAL - On Tuesday, I'm taking my dog to Central Park.
-# { "day": "Tuesday", "species": "dog", "destination": "Central Park"}
+
 def pet_log(pet_dict):
-    # print(pet_dict)
     logging.critical("On {}, I'm taking my {} to {}.".format(pet_dict["day"],
                                                               pet_dict["species"],
                                                               pet_dict["destination"]
                      ))
-
-
 
 
 # Do not edit any code below this line!
