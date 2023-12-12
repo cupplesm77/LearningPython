@@ -1,0 +1,7 @@
+[WARNING] warning message
+[ERROR] error message
+[CRITICAL] critical message
+[CRITICAL] I'm learning Python
+[WARNING] I'm getting good at it!
+[CRITICAL] I'm learning logging
+[WARNING] I'm going to be great at it!
