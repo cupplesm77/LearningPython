@@ -58,6 +58,25 @@ def print_log():
 with open(LOGFILE, 'w'): pass
     
 # Write your code here:
+import logging
+
+
+log_level = logging.INFO
+log_format = "%(levelname)s - %(message)s"
+logging.basicConfig(level=log_level,
+                    filename=LOGFILE,
+                    format=log_format
+                    )
+
+# CRITICAL - On Tuesday, I'm taking my dog to Central Park.
+# { "day": "Tuesday", "species": "dog", "destination": "Central Park"}
+def pet_log(pet_dict):
+    # print(pet_dict)
+    logging.critical("On {}, I'm taking my {} to {}.".format(pet_dict["day"],
+                                                              pet_dict["species"],
+                                                              pet_dict["destination"]
+                     ))
+
 
 
 
