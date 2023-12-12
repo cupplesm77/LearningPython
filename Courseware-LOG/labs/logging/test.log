@@ -1,18 +1,4 @@
 DEBUG:root:Howdy there, bug
 WARNING:root:Watch Out!
 ERROR:root:Ouch!
-DEBUG:root:Howdy there, bug
-WARNING:root:Watch Out!
-ERROR:root:Ouch!
-DEBUG:root:Howdy there, bug
-WARNING:root:Watch Out!
-ERROR:root:Ouch!
-DEBUG:root:Howdy there, bug
-WARNING:root:Watch Out!
-ERROR:root:Ouch!
-DEBUG:root:Howdy there, bug
-WARNING:root:Watch Out!
-ERROR:root:Ouch!
-DEBUG:root:Howdy there, bug
-WARNING:root:Watch Out!
-ERROR:root:Ouch!
+INFO:root:I am going to Town!

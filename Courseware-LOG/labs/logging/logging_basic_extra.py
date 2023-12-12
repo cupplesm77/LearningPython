@@ -61,8 +61,24 @@ def print_log():
 with open(LOGFILE, 'w'): pass
     
 # Write your code here:
+import logging
 
+log_level = logging.WARNING
+log_format = "[%(levelname)s] %(message)s"
+logging.basicConfig(level=log_level,
+                    filename=LOGFILE,
+                    format=log_format
+                    )
 
+# log_announcements("I'm learning %s")
+def log_announcements(message):
+
+    message_dict = {"Python": "I'm getting good at it!",
+                "logging": "I'm going to be great at it!"}
+
+    for key, value in message_dict.items():
+            logging.critical(message, key)
+            logging.warning(value)
 
 # Do not edit any code below this line!
 
