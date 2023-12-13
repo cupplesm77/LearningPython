@@ -51,7 +51,23 @@ def print_file(path):
     print(open(path).read(), end="")
 
 # Write your code here:
+import logging
 
+my_logger = logging.getLogger()
+my_logger.setLevel(logging.DEBUG)
+
+log_file_terse_handler = logging.FileHandler(LOGFILE_TERSE)
+log_file_terse_handler.setLevel(logging.ERROR)
+
+log_file_verbose_handler = logging.FileHandler(LOGFILE_VERBOSE)
+log_file_verbose_handler.setLevel(logging.DEBUG)
+
+log_file_thorough_handler = logging.FileHandler(LOGFILE_THOROUGH)
+log_file_thorough_handler.setLevel(logging.INFO)
+
+my_logger.addHandler(log_file_terse_handler)
+my_logger.addHandler(log_file_verbose_handler)
+my_logger.addHandler(log_file_thorough_handler)
 
 
 # Do not edit any code below this line!
