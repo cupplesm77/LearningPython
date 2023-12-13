@@ -45,6 +45,39 @@ def print_file(path):
     print(open(path).read(), end="")
 
 # Write your code here:
+import logging
+
+my_logger = logging.getLogger()
+my_logger.setLevel(logging.DEBUG)
+
+# standard logfile output
+log_file_standard_handler = logging.FileHandler(LOGFILE_STANDARD)
+log_file_standard_handler.setLevel(logging.INFO)
+
+# csv logfile output
+log_file_csv_handler = logging.FileHandler(LOGFILE_CSV)
+log_file_csv_handler.setLevel(logging.INFO)
+
+# json logfile output
+log_file_json_handler = logging.FileHandler(LOGFILE_JSON)
+log_file_json_handler.setLevel(logging.INFO)
+
+my_logger.addHandler(log_file_standard_handler)
+my_logger.addHandler(log_file_csv_handler)
+my_logger.addHandler(log_file_json_handler)
+
+
+fmt_standard = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
+# WARNING:root:There's a loose board right there.
+log_file_standard_handler.setFormatter(fmt_standard)
+
+fmt_csv = logging.Formatter('root,%(levelname)s,%(message)s')
+# root,WARNING,There's a loose board right there.
+log_file_csv_handler.setFormatter(fmt_csv)
+
+fmt_json = logging.Formatter('{"logger":"root", "level":"%(levelname)s", "message":"%(message)s"}')
+# {"logger":"root", "level":"WARNING", "message":"There's a loose board right there."}
+log_file_json_handler.setFormatter(fmt_json)
 
 
 
