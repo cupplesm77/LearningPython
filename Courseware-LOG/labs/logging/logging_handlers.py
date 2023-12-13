@@ -58,16 +58,16 @@ my_logger.setLevel(logging.DEBUG)
 
 log_file_terse_handler = logging.FileHandler(LOGFILE_TERSE)
 log_file_terse_handler.setLevel(logging.ERROR)
+my_logger.addHandler(log_file_terse_handler)
 
 log_file_verbose_handler = logging.FileHandler(LOGFILE_VERBOSE)
 log_file_verbose_handler.setLevel(logging.DEBUG)
+my_logger.addHandler(log_file_verbose_handler)
 
 log_file_thorough_handler = logging.FileHandler(LOGFILE_THOROUGH)
 log_file_thorough_handler.setLevel(logging.INFO)
-
-my_logger.addHandler(log_file_terse_handler)
-my_logger.addHandler(log_file_verbose_handler)
 my_logger.addHandler(log_file_thorough_handler)
+
 
 
 # Do not edit any code below this line!
