@@ -1,0 +1,16 @@
+# 1 pattern.txt
+
+2 This text file is used to test command line code
+
+3 I hope you like pattern files because here is one for the road. 1
+
+4 The second sentence is LikE it, but it is a little more complex.  2
+5 Hope you Liked the two lines above?  3
+6 I likE it, but is does not like me. 4
+
+7 LIke is a word too 5
+8 lIKe is a word to Like as well 6
+9 LIKE 7
+10 How about this aka:Like?  8
+11 You will probably not Lke this.
+
