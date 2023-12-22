@@ -1,4 +1,41 @@
+
 # misc.py
+
+class BadValueError(Exception):
+    def __init__(self, val):
+        self.val = val
+    def describe(self):
+        print(f"Really Bad Value Passed: {self.val}")
+
+value = ["test", 44, "51", 'forty']
+
+for val in value:
+    try:
+        intvalue = int(val)
+        print("")
+        print(intvalue)
+    except ValueError as err:
+        print("")
+        print(f"Bad Bad Value: {err}")
+
+import re
+
+value = ["test4", "44", "51", 'forty']
+for val in value:
+    if re.match("-?\d+$", val):
+        print(val)
+
+def make_an_int(value):
+    if not re.match("-?\d+$", val):
+        raise BadValueError(val)
+
+print("")
+for val in value:
+    try:
+        make_an_int(val)
+    except BadValueError as err:
+        print("")
+        print(f"BadValueError: {err.describe()}")
 
 def parse_name(name):
     name_types = ['first', 'last']
@@ -31,3 +68,4 @@ print(parse_name("John Smith"))
 # print(parse_name("John Wayne Smith"))
 
 print(parse_phone_number("222-222-22223"))
+

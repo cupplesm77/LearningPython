@@ -202,7 +202,69 @@ CURRENCIES = {'USD', 'CAN', 'EUR'}
 
 # Write your code here:
 
+# ************ File Reading Exceptions ************************
+class FileReadException(Exception):
+    def __init__(self, path):
+        self.path = path
 
+class CorruptImageException(FileReadException):
+    pass
+
+class EarlyEndOfFileException(FileReadException):
+    pass
+
+# ****************** END: File Reading Exceptions *************************
+
+def read_corrupt_image(path):
+    raise CorruptImageException(path)
+
+def read_truncated_file(path):
+    raise EarlyEndOfFileException(path)
+
+
+
+# ****************** Transaction Exceptions *******************************
+class TransactionError(Exception):
+    pass
+
+class UnknownCurrencyError(TransactionError):
+    def __init__(self, currency):
+        self.currency = currency
+    def __str__(self):
+        return f'UnknownCurrencyError("{self.currency}")'
+
+class MoneyTransferError(TransactionError):
+    def __init__(self, amount, sender, recipient):
+        self.amount = amount
+        self.sender = sender
+        self.recipient = recipient
+    def describe_transfer(self):
+        return '{} attempted to send ${:0.2f} to {}'.format(
+            self.sender, self.amount, self.recipient)
+    def __str__(self):
+        return '${:0.2f}: {} -> {}'.format(
+            self.amount,
+            self.sender,
+            self.recipient)
+
+class InsufficientFundsError(MoneyTransferError):
+    pass
+
+class MissingRecipientError(MoneyTransferError):
+    pass
+# *************** END: Transaction Exceptions **********************
+
+def send_money(sender, receiver, amount, currency):
+    if currency not in CURRENCIES:
+        raise UnknownCurrencyError(currency)
+    if receiver not in ACCOUNTS:
+        raise MissingRecipientError(amount, sender, receiver)
+    if ACCOUNTS[sender] < amount:
+        raise InsufficientFundsError(amount, sender, receiver)
+    ACCOUNTS[sender] -= amount
+    ACCOUNTS[receiver] += amount
+    print('Successfully transferred ${:0.2f} from {} to {}'.format(
+        amount, sender, receiver))
 
 # Do not edit any code below this line!
 
