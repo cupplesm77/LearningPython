@@ -86,8 +86,34 @@ False
 '''
 
 # Write your code here:
+import argparse
+
+# parser1
+parser1 = argparse.ArgumentParser()
+parser1.add_argument("filename")
+parser1.add_argument("destination")
+#args1 = parser1.parse_args()
+
+# parser 2
+parser2 = argparse.ArgumentParser()
+parser2.add_argument("filename", default=None)
+parser2.add_argument("--type",
+                     choices=["text", "json"],
+                     default="text"
+                     )
+
+# parser 3
+parser3 = argparse.ArgumentParser()
+parser3.add_argument("input")
+parser3.add_argument("--limit", default=100, type=int)
 
 
+parser4 = argparse.ArgumentParser()
+parser4.add_argument("input")
+parser4.add_argument("output")
+parser4.add_argument("-i", "--ignore-duplicates", default=False, action="store_true")
+
+# args4 = parser4.parse_args(["stocks.csv", "accounts.csv", "--ignore-duplicates"])
 
 # Do not edit any code below this line!
 
