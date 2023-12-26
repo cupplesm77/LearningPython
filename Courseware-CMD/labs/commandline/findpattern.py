@@ -25,6 +25,7 @@ def positive_int(value):
     return number
 
 
+# using the argparse Namespace rather than this homespun Namespace
 # class Namespace:
 #     def __init__(self, **kwargs):
 #         self.__dict__.update(kwargs)
@@ -76,6 +77,7 @@ def get_args(flag):
         return parser.parse_args()
 
 
+# helper functions
 def setup_index_counting(args):
     if args.limit is not None:
         index_count = args.limit
@@ -85,6 +87,14 @@ def setup_index_counting(args):
         raise ValueError("Limit and count cannot be both be specified at the same time.")
     return index_count
 
+
+def output(args, line):
+    # arguments limit and count are mutually exclusive
+    if args.limit is not None:
+        print(f'"{args.prefix}" Found: {line}')
+    elif args.count is not None:
+        print(f"Found: {index} {args.prefix}'s")
+
 if __name__ == "__main__":
     # run_flag = False if running script from command line; True otherwise
     run_flag = False
@@ -92,16 +102,14 @@ if __name__ == "__main__":
     print(f"args: {args}")
     index = 0
     index_count = setup_index_counting(args)
+    # arguments limit and count are mutually exclusive
     if args.limit is not None or args.count is not None:
         for line in grepfile(args.pattern, args.path, args.ignore_case):
             index += 1
-            if args.limit is not None:
-                print(f'"{args.prefix}" Found: {line}')
-            elif args.count is not None:
-                print(f"Found: {index} {args.prefix}'s")
-            # print(f" index: {index}, args.limit: {limit}")
+            # output the information based on
+            output(args, line)
             if index >= index_count:
-                print("reached the specified limit/count of number of 'pattern' lines read from pattern file...break!\n")
+                print("reached the specified limit/count of number of 'pattern' lines read from pattern file...break!")
                 break
     else:
         for line in grepfile(args.pattern, args.path, args.ignore_case):
