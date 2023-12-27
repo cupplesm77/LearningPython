@@ -25,12 +25,23 @@ def positive_int(value):
     return number
 
 
-# using the argparse Namespace rather than this homespun Namespace
-# class Namespace:
-#     def __init__(self, **kwargs):
-#         self.__dict__.update(kwargs)
-#         print(f"Namespace dictionary created: {self.__dict__}")
+# ************ adding a print attribute to the argparse Namespace class (monkey patch)
+def printNamespace(cls):
+    """
+    add enhanced printing to the cls
+    Parameters
+    ----------
+    cls  class passed to printNamespace
 
+    Returns
+    -------
+    cls   modified to print the namespace (added a print attribute)
+    """
+    cls.print = lambda cls: print(f"args dictionary: {cls}")
+    return cls
+
+Namespace = printNamespace(Namespace)
+# ***************************************************************
 
 def grepfile(pattern, path, ignore_case):
     with open(path) as handle:
@@ -54,13 +65,17 @@ def get_args(flag):
         count = 5
         if limit is not None and count is not None:
             raise ValueError("Limit and count cannot be both be specified at the same time.")
-        return Namespace(pattern=pattern,
+        nspace = Namespace(pattern=pattern,
                          path=path,
                          ignore_case=ignore_case,
                          prefix=prefix,
                          limit=limit,
                          count=count,
                          )
+        nspace.print()
+
+
+        return nspace
     else:
         description = "Finds patterns in a file located at 'path' using 'pattern'."
         epilog = "Similar to grep, but with substring matching only."
@@ -97,9 +112,8 @@ def output(args, line):
 
 if __name__ == "__main__":
     # run_flag = False if running script from command line; True otherwise
-    run_flag = False
+    run_flag = True
     args = get_args(run_flag)
-    print(f"args: {args}")
     index = 0
     index_count = setup_index_counting(args)
     # arguments limit and count are mutually exclusive
