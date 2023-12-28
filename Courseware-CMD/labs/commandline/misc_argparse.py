@@ -28,7 +28,7 @@ print(nspace.__dict__)
 print(f"YEP, nspace: {nspace.__dict__}")
 print("")
 
-# this wont' work:
+# this won't work:
 # nspace.print()
 
 def printNamespace(cls):
