@@ -37,10 +37,13 @@ def printNamespace(cls):
     -------
     cls   modified to print the namespace (added a print attribute)
     """
-    cls.print = lambda cls: print(f"args dictionary: {cls}")
+    cls.printArgs = lambda cls: print(f"args dictionary: {cls}")
     return cls
 
+
 Namespace = printNamespace(Namespace)
+
+
 # ***************************************************************
 
 def grepfile(pattern, path, ignore_case):
@@ -54,42 +57,21 @@ def grepfile(pattern, path, ignore_case):
                 if pattern in line:
                     yield line.rstrip("\n")
 
-def get_args(flag):
-    if run_flag:
-        # ******* a set of hard-coded arguments in the event user wants to run without the command line  ******
-        pattern = 'like'
-        path = '.\\pattern.txt'
-        ignore_case = True
-        prefix = 'like'
-        limit = None
-        count = 5
-        if limit is not None and count is not None:
-            raise ValueError("Limit and count cannot be both be specified at the same time.")
-        nspace = Namespace(pattern=pattern,
-                         path=path,
-                         ignore_case=ignore_case,
-                         prefix=prefix,
-                         limit=limit,
-                         count=count,
-                         )
-        nspace.print()
 
-
-        return nspace
-    else:
-        description = "Finds patterns in a file located at 'path' using 'pattern'."
-        epilog = "Similar to grep, but with substring matching only."
-        parser = argparse.ArgumentParser(description=description, epilog=epilog)
-        group = parser.add_mutually_exclusive_group()
-        parser.add_argument("pattern", help="Substring pattern to match.")
-        parser.add_argument('path', help="Path to file in which to search.")
-        parser.add_argument('-i', '--ignore_case', action='store_true', help="Ignore case.")
-        parser.add_argument('-p', '--prefix', default=" ", help="Prepend prefix to output lines.")
-        group.add_argument('--limit', default=None, type=positive_int,
-                           help="Show only this many matches. Default is show all.")
-        group.add_argument('-c', '--count', default=None, type=positive_int,
-                           help="Count only this many matches at most. Default is to count all.")
-        return parser.parse_args()
+def get_args():
+    description = "Finds patterns in a file located at 'path' using 'pattern'."
+    epilog = "Similar to grep, but with substring matching only."
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
+    group = parser.add_mutually_exclusive_group()
+    parser.add_argument("pattern", help="Substring pattern to match.")
+    parser.add_argument('path', help="Path to file in which to search.")
+    parser.add_argument('-i', '--ignore_case', action='store_true', help="Ignore case.")
+    parser.add_argument('-p', '--prefix', default=" ", help="Prepend prefix to output lines.")
+    group.add_argument('--limit', default=None, type=positive_int,
+                       help="Show only this many matches. Default is show all.")
+    group.add_argument('-c', '--count', default=None, type=positive_int,
+                       help="Count only this many matches at most. Default is to count all.")
+    return parser.parse_args()
 
 
 # helper functions
@@ -110,10 +92,12 @@ def output(args, line):
     elif args.count is not None:
         print(f"Found: {index} {args.prefix}'s")
 
+
 if __name__ == "__main__":
     # run_flag = False if running script from command line; True otherwise
-    run_flag = True
-    args = get_args(run_flag)
+    run_flag = False
+    args = get_args()
+    args.printArgs()
     index = 0
     index_count = setup_index_counting(args)
     # arguments limit and count are mutually exclusive
