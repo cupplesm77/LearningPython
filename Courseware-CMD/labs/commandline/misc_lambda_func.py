@@ -2,7 +2,7 @@
 
 from argparse import Namespace
 
-# This is the argparse Namespce:
+# FYI: This is the argparse Namespce:
 # class Namespace(_AttributeHolder):
 #     def __init__(self, **kwargs: Any) -> None: ...
 #     def __getattr__(self, name: str) -> Any: ...
