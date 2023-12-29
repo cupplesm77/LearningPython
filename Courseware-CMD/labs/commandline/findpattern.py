@@ -37,7 +37,16 @@ def printNamespace(cls):
     -------
     cls   modified to print the namespace (added a print attribute)
     """
-    cls.printArgs = lambda cls: print(f"args dictionary: {cls}")
+
+    # using a traditional functional approach to setting up the new printing attribute:
+    # def f(x):
+    #     print(f"args dictionary: {x}")
+    #
+    # cls.printArgs = f
+
+    # using a lambda function rather than a traditional function:
+    cls.printArgs = lambda x: print(f"args dictionary: {x}")
+
     return cls
 
 
